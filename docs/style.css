@@ -1,10 +1,11 @@
-/* Reset & Grundstil */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Seite */
 body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #eef2ff, #f9fafb);
@@ -14,50 +15,72 @@ body {
 
 /* Header */
 header {
-    background: #4f46e5;
-    color: white;
+    background: #e54646;
+    color: rgb(136, 255, 0);
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
-    font-size: 2rem;
-}
-
-/* Hauptbereich */
+/* Main Bereich */
 main {
-    max-width: 800px;
     margin: 3rem auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    padding: 0 1rem;
     text-align: center;
 }
 
-/* Text */
-main p {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-}
-
-/* Button */
-button {
+/* Standard Button oben */
+#myButton {
+    margin: 1rem 0 2rem;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 8px;
     background: #4f46e5;
     color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
-button:hover {
+#myButton:hover {
+    background: #4338ca;
+}
+
+#display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    font-size: 2.2rem; /* 👉 hier größer */
+    font-weight: bold;
+
+    background: rgba(255,255,255,0.2);
+    padding: 0.4rem 0.9rem;
+    border-radius: 10px;
+
+    margin: 0;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.buttons button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.buttons button:hover {
     background: #4338ca;
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(79,70,229,0.3);
 }
 
 /* Footer */
@@ -66,5 +89,135 @@ footer {
     padding: 1.5rem;
     margin-top: 2rem;
     color: #666;
-    font-size: 0.9rem;
+}
+
+.card {
+    background: white;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.card h2 {
+    color: #4f46e5;
+    margin-bottom: 1rem;
+}
+
+/* Eingabefeld */
+.card textarea {
+    width: 100%;
+    height: 100px;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    resize: none;
+    outline: none;
+}
+
+/* Fokus-Effekt */
+.card textarea:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 8px rgba(79,70,229,0.2);
+}
+
+.send-btn {
+    margin-top: 1rem;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 10px;
+
+    background: #4f46e5;
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    box-shadow: 0 6px 15px rgba(79,70,229,0.2);
+}
+
+/* Hover Effekt */
+.send-btn:hover {
+    background: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(79,70,229,0.3);
+}
+
+/* Klick Effekt */
+.send-btn:active {
+    transform: scale(0.97);
+}
+
+.cardfull {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 15px;
+    padding: 1.5rem;
+    justify-items: center;
+    max-width: 100vw;
+}
+
+.cardfull img {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.cardfull img:hover {
+    transform: scale(1.1);
+}
+
+.key {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.key:hover {
+    transform: scale(1.1);
+}
+
+.keyletter{
+    display: none;
+    color: green;
+}
+
+.objectdownside{
+    display: none;
+    color: red;
+}
+
+#Spielbrett{
+    display: none;
+}
+
+#Schlüsselwort{
+    display: none;
+}
+
+#SchlussGewonnen{
+    display: none;
+}
+
+#SchlussVerloren{
+    display: none;
+}
+
+#EndeKomplettGewonnen{
+    display: none;
+}
+
+#AlternativerWeg{
+    display: none;
+}
+
+#EndeKomplettGewonnenAlternativ{
+    display: none;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,112 @@
     <!-- CSS einbinden -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
-        <h1>Willkommen auf meiner Webseite</h1>
+        <h1>Herzlich Willkommen zur Jagd nach dem Schlüssel</h1>
+        <div id="display">00:00</div>
     </header>
 
     <main>
-        <p>Das ist eine einfache HTML-Seite.</p>
-        <button id="myButton">Klick mich</button>
+        <div class="card" id="Einleitung">
+            <h2 style="text-align: left;">Einleitung:</h2>
+            <h3 style="text-align: left;">Bei diesem Spiel musst du den Schlüssel einsammeln, der sich zwischen den
+                anderen Objekten versteckt.
+                Dafür erhälst einen Buchstaben, der hinter dem Schlüssel erscheint.
+                Dieser ist nur für 2 Sekunden sichtbar und dann nicht mehr.
+                Sobald er nicht mehr sichtbar ist, erscheint ein neuer Schlüssel und die Suche geht wieder erneut los.
+                <br><br>
+                <i>Hinweis: Du solltest dir den Buchstabe im unteren Kästchen direkt aufschreiben, da du aus diesen
+                    Buchstaben
+                    ein Schlüsselwort bilden musst und dieses benötigst du zum Gewinnen. <br>(Ach ja und das ganze läuft
+                    auch auf Zeit </i>😄<i>.
+                    <br>Bei jedem falschen Objekt bekommst du 5 Sekunden Strafe.)</i>
+            </h3>
+            <button class="send-btn" style="text-align: center;" id="beginnen">Spiel beginnen</button><br><br>
+            <div><textarea name="Codewort" id="codewort" placeholder="Codewort eingeben..."></textarea></div>
+        </div>
+        <div class="card cardfull" id="Spielbrett">
+            <!--<div class="keyObject">
+                <img class="key" src="/docs/Bilder/Schlüssel.png">
+                <h1 class="keyletter">H</h1>
+            </div>
+            <div class="nonkeyObject">
+                <img class="object" src="/docs/Bilder/Schlüssel.png">
+                <h1 class="objectdownside">-5s</h1>
+            </div>-->
+        </div>
+        <div class="card" id="Schlüsselwort">
+            <h2>Schlüsselwort eingeben:</h2>
+
+            <textarea placeholder="Hier das Schlüsselwort eingeben..." id="SchlüsselwortArea"></textarea>
+            <button class="send-btn" id="schlüsselwortAbsenden">Schlüsselwort absenden</button>
+        </div>
+
+        <div class="card" id="SchlussGewonnen">
+            <h2 style="text-align: left; color: green;">Gewonnen:</h2>
+            <h3 style="text-align: left;">
+                Du hast das Schlüsselwort richtig zusammengestellt und den Code damit geknackt. Bist du bereit für die
+                nächste Runde?
+            </h3>
+            <button class="send-btn" style="text-align: center;" id="nächsteRunde">Nächste Runde</button>
+        </div>
+        <div class="card" id="SchlussVerloren">
+            <h2 style="text-align: left; color: red;">Verloren:</h2>
+            <h3 style="text-align: left;">
+                Du hast das Codewort leider nicht in der vorgegebenen Zeit herausgefunden. Probiere es doch einfach noch
+                einmal.
+            </h3>
+            <button class="send-btn" style="text-align: center;" id="rundewiederholen">Runde wiederholen</button>
+        </div>
+        <div class="card" id="EndeKomplettGewonnen">
+            <h2 style="text-align: center; color: rgb(51, 255, 0);">😄Alles Gute zum Muttertag.😄</h2>
+            <h3>
+                Ich hoffe dir hat das turbulente Spiel gefallen. Wenn du nochmal alle Wörter zusammensetzt kommen diese
+                Sätze am Ende heraus:
+            </h3>
+            <h3><br>Ich wünsche dir alles gute zum Muttertag. <br>Bleib wie du bist und genau so bist du super.
+                <br>Lasse dich von keinem aus der Ruhe bringen und habe vor allem heute einen super schönen Tag.
+            </h3>
+            <h3><i><br>Hinweis:<br>Du kannst auch gerne noch eine Runde spielen und diesmal andere Wörter herausfinden
+                    um deine Aufgabe für den heutigen Tag herauszufinden. (Codewort: Affe)</i>
+            </h3>
+        </div>
+        <div class="card" id="AlternativerWeg">
+            <h2 style="text-align: center; color: rgb(255, 60, 0);">Das Versteckte Rätsel</h2>
+            <h3>
+                Super 😄, du hast die erste Runde geschafft, aber das war noch lange nicht alles, denn nun geht es
+                weiter.
+            </h3>
+            <h3><br>Diesmal sollst du herausfinden <br>was du heute zu tun hast. <br>Also viel Spaß und auch hier
+                <br>sind alle Regeln wie immer. 😄</h3>
+
+            <button class="send-btn" style="text-align: center;" id="startzweitesSpiel">Spiel beginnen</button>
+        </div>
+        <div class="card" id="EndeKomplettGewonnenAlternativ">
+            <h2 style="text-align: center; color: rgb(51, 255, 0);">😄Alles Gute zum Muttertag.😄 x2</h2>
+            <h3>
+                Ich hoffe dir hat auch dieses Spiel gefallen. Wenn du nochmal alle Wörter zusammensetzt kommen diese
+                Sätze am Ende heraus:
+            </h3>
+            <h3><br>Deine Aufgaben sind heute. Ähm schlafen, ausruhen, einfach mal den Tag genießen usw. Mach dir heute
+                einfach einen schönen Tag und jetzt bin ich auch raus.😄 <br>
+                <a href="https://designshop-6aa0.kxcdn.com/photos/Meridian-design-muttertag-16314_26.jpg"
+                    target="_blank">Hier ist noch etwas schönes für dich.</a>
+            </h3>
+
+        </div>
     </main>
 
+
+
     <footer>
-        <p>&copy; 2026 Meine Webseite</p>
+        <p>&copy; 2026 Muttertagsgeschenk</p>
     </footer>
 
     <!-- JavaScript einbinden -->
     <script src="script.js"></script>
 </body>
+
 </html>

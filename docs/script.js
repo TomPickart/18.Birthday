@@ -105,17 +105,6 @@ document.querySelector("#beginnen").addEventListener("click", () => {
 
 document.querySelector("#schlüsselwortAbsenden").addEventListener("click", () => {
     if (alleWörter[welchesWort] == document.querySelector("#SchlüsselwortArea").value) {
-        display.classList.remove("blink");
-        document.querySelector("#SchlussGewonnen").style.display = "block";
-
-        document.querySelector("#Spielbrett").style.display = "none";
-        document.querySelector("#Schlüsselwort").style.display = "none";
-
-        clearInterval(timerInterval);
-        document.querySelector("#display").innerHTML = "00:00";
-        welchesWort++;
-        aktuellerBuchstabe = 0;
-        document.querySelector("#SchlüsselwortArea").value = "";
         if (welchesWort == alleWörter.length) {
             if (welchesSpiel == 1) {
                 document.querySelector("#Spielbrett").style.display = "none";
@@ -127,7 +116,19 @@ document.querySelector("#schlüsselwortAbsenden").addEventListener("click", () =
                 document.querySelector("#Schlüsselwort").style.display = "none";
                 document.querySelector("#EndeKomplettGewonnenAlternativ").style.display = "block";
             }
+        }
+        else {
+            display.classList.remove("blink");
+            document.querySelector("#SchlussGewonnen").style.display = "block";
 
+            document.querySelector("#Spielbrett").style.display = "none";
+            document.querySelector("#Schlüsselwort").style.display = "none";
+
+            clearInterval(timerInterval);
+            document.querySelector("#display").innerHTML = "00:00";
+            welchesWort++;
+            aktuellerBuchstabe = 0;
+            document.querySelector("#SchlüsselwortArea").value = "";
         }
     }
 })

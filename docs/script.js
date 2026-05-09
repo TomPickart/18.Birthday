@@ -179,7 +179,7 @@ function neuesFeldErzeugen() {
 
     let key = document.createElement("div");
     key.className = "keyObject";
-    key.innerHTML = '<img class="key" src="Bilder/Schlüssel.png"><h1 class="keyletter">' + alleWörter[welchesWort][aktuellerBuchstabe] + '</h1>';
+    key.innerHTML = '<img class="key" src="Bilder/Schluessel.png"><h1 class="keyletter">' + alleWörter[welchesWort][aktuellerBuchstabe] + '</h1>';
     let keypos = getRandomInt(119);
 
     for (let i = 0; i < 119; i++) {

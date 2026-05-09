@@ -179,7 +179,7 @@ function neuesFeldErzeugen() {
 
     let key = document.createElement("div");
     key.className = "keyObject";
-    key.innerHTML = '<img class="key" src="./docs/Bilder/Schlüssel.png"><h1 class="keyletter">' + alleWörter[welchesWort][aktuellerBuchstabe] + '</h1>';
+    key.innerHTML = '<img class="key" src="Bilder/Schlüssel.png"><h1 class="keyletter">' + alleWörter[welchesWort][aktuellerBuchstabe] + '</h1>';
     let keypos = getRandomInt(119);
 
     for (let i = 0; i < 119; i++) {
@@ -189,8 +189,8 @@ function neuesFeldErzeugen() {
         else {
             let other = document.createElement("div");
             other.className = "nonkeyObject";
-            let bilder = ["Autoschlüssel.jpg", "Gold.jpg", "Ringe.jpg", "Schatz.jpg", "Schloss.jpg", "SchlüssellochMitTürklinke.jpg"]
-            other.innerHTML = '<img class="object" src="./docs/Bilder/' + bilder[getRandomInt(6)] + '"><h1 class="objectdownside">-5s</h1>';
+            let bilder = ["Autoschluessel.jpg", "Gold.jpg", "Ringe.jpg", "Schatz.jpg", "Schloss.jpg", "SchluessellochMitTuerklinke.jpg"]
+            other.innerHTML = '<img class="object" src="Bilder/' + bilder[getRandomInt(6)] + '"><h1 class="objectdownside">-5s</h1>';
             document.querySelector("#Spielbrett").appendChild(other);
         }
     }

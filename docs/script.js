@@ -29,12 +29,17 @@ function updateDisplay() {
         String(mins).padStart(2, "0") + ":" +
         String(secs).padStart(2, "0");
 
+    if (seconds <= 5) {
+        display.classList.add("blink");
+    }
+
     if (seconds <= 0) {
         document.querySelector("#SchlussVerloren").style.display = "block";
         document.querySelector("#Spielbrett").style.display = "none";
         document.querySelector("#Schlüsselwort").style.display = "none";
         clearInterval(timerInterval);
         document.querySelector("#display").innerHTML = "00:00";
+        display.classList.remove("blink");
     }
 }
 
@@ -66,6 +71,11 @@ document.querySelector("#startzweitesSpiel").addEventListener("click", () => {
         seconds--;
         updateDisplay();
     }, 1000);
+
+    let audio = document.getElementById("audio");
+
+    // Audio starten
+    audio.play();
 })
 
 document.querySelector("#beginnen").addEventListener("click", () => {
@@ -86,10 +96,16 @@ document.querySelector("#beginnen").addEventListener("click", () => {
         seconds--;
         updateDisplay();
     }, 1000);
+
+    let audio = document.getElementById("audio");
+
+    // Audio starten
+    audio.play();
 })
 
 document.querySelector("#schlüsselwortAbsenden").addEventListener("click", () => {
     if (alleWörter[welchesWort] == document.querySelector("#SchlüsselwortArea").value) {
+        display.classList.remove("blink");
         document.querySelector("#SchlussGewonnen").style.display = "block";
 
         document.querySelector("#Spielbrett").style.display = "none";

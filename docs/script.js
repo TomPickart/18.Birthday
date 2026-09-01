@@ -925,10 +925,10 @@ function openQuiz(number) {
         if (number === 1) {
 
             headerLeft.src =
-                "https://tompickart.github.io/18.Birthday/Bilder/B07.jpg";
+                "/18.Birthday/Bilder/B07.jpg";
 
             headerRight.src =
-                "https://tompickart.github.io/18.Birthday/Bilder/MW4.jpg";
+                "/18.Birthday/Bilder/MW4.jpg";
 
         }
 
@@ -936,10 +936,10 @@ function openQuiz(number) {
         if (number === 2) {
 
             headerLeft.src =
-                "https://tompickart.github.io/18.Birthday/Bilder/b06.jpg";
+                "/18.Birthday/Bilder/b06.jpg";
 
             headerRight.src =
-                "https://tompickart.github.io/18.Birthday/Bilder/mw3.jpg";
+                "/18.Birthday/Bilder/mw3.jpg";
 
         }
 
@@ -947,10 +947,10 @@ function openQuiz(number) {
         if (number === 3) {
 
             headerLeft.src =
-                "https://tompickart.github.io/18.Birthday/Bilder/b0coldwar.jpg";
+                "/18.Birthday/Bilder/b0coldwar.jpg";
 
             headerRight.src =
-                "https://tompickart.github.io/18.Birthday/Bilder/mw2019.jpg";
+                "/18.Birthday/Bilder/mw2019.jpg";
 
         }
 

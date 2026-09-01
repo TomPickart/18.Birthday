@@ -4,117 +4,875 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muttertag</title>
 
-    <!-- CSS einbinden -->
+    <title>18. Geburtstag Ron</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/png" href="./favicon.png?v=2">
 </head>
 
 <body>
-    <audio src="https://tompickart.github.io/muttertag/Musik/Adventure.mp3" id="audio" loop></audio>
+
+    <!-- =====================================================
+         AUDIO
+    ====================================================== -->
+
+    <audio id="menuMusic" src="../docs/Musik/menu.mp3" loop preload="auto"></audio>
+
+    <audio id="arcadeMusic" src="../docs/Musik/arcade.mp3" loop preload="auto"></audio>
+
+    <audio id="buttonSound" src="../docs/Musik/button.mp3" preload="auto"></audio>
+
+    <audio id="correctSound" src="../docs/Musik/correct.mp3" preload="auto"></audio>
+
+    <audio id="wrongSound" src="../docs/Musik/wrong.mp3" preload="auto"></audio>
+
+    <audio id="explosionSound" src="../docs/Musik/explosion.mp3" preload="auto"></audio>
+
+    <audio id="shootSound" src="../docs/Musik/shoot.mp3" preload="auto"></audio>
+
+    <audio id="hitSound" src="../docs/Musik/hit.mp3" preload="auto"></audio>
+
+    <audio id="completeSound" src="../docs/Musik/mission-complete.mp3" preload="auto"></audio>
+
+    <audio id="unlockSound" src="../docs/Musik/unlock.mp3" preload="auto"></audio>
+
+    <audio id="weaponSelectSound" src="../docs/Musik/weapon-select.mp3" preload="auto"></audio>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
     <header>
-        <h1>Herzlich Willkommen zur Jagd nach dem Schlüssel</h1>
-        <div id="display">00:00</div>
+
+        <div class="header-content">
+
+            <div class="header-image-wrapper header-left">
+                <div class="image-scan"></div>
+                <img id="quizHeaderLeft" src="/docs/Bilder/B07.jpg" alt="Call of Duty Bild links" class="header-bild">
+            </div>
+
+
+            <div class="header-title">
+
+                <div class="subtitle">
+                    CLASSIFIED // TRAINING SIMULATION
+                </div>
+
+                <h1>DAS COD-QUIZ</h1>
+
+                <div class="warning">
+                    ⚠ NICHTS FÜR SCHWACHE NERVEN ⚠
+                </div>
+
+            </div>
+
+
+            <div class="header-image-wrapper header-right">
+                <div class="image-scan"></div>
+                <img id="quizHeaderRight" src="/docs/Bilder/MW4.jpg" alt="Call of Duty Bild rechts" class="header-bild">
+            </div>
+
+        </div>
+
     </header>
 
-    <main>
-        <div class="card" id="Einleitung">
-            <h2 style="text-align: left;">Einleitung:</h2>
-            <h3 style="text-align: left;">Bei diesem Spiel musst du den Schlüssel einsammeln, der sich zwischen den
-                anderen Objekten versteckt.
-                Dafür erhälst einen Buchstaben, der hinter dem Schlüssel erscheint.
-                Dieser ist nur für 2 Sekunden sichtbar und dann nicht mehr.
-                Sobald er nicht mehr sichtbar ist, erscheint ein neuer Schlüssel und die Suche geht wieder erneut los.
-                <br><br>
-                <i>Hinweis: Du solltest dir den Buchstabe im unteren Kästchen direkt aufschreiben, da du aus diesen
-                    Buchstaben
-                    ein Schlüsselwort bilden musst und dieses benötigst du zum Gewinnen. <br>(Ach ja und das ganze läuft
-                    auch auf Zeit </i>😄<i>.
-                    <br>Bei jedem falschen Objekt bekommst du 5 Sekunden Strafe.)</i>
-            </h3>
-            <button class="send-btn" style="text-align: center;" id="beginnen">Spiel beginnen</button><br><br>
-            <div><textarea name="Codewort" id="codewort" placeholder="Codewort eingeben..."></textarea></div>
-        </div>
-        <div class="card cardfull" id="Spielbrett">
-            <!--<div class="keyObject">
-                <img class="key" src="/docs/Bilder/Schlüssel.png">
-                <h1 class="keyletter">H</h1>
+
+    <!-- =====================================================
+     ECHTER STARTBILDSCHIRM
+====================================================== -->
+
+    <div id="quizStartScreen">
+
+        <div class="quiz-start-hud">
+
+            <div class="quiz-start-small">
+                // SYSTEM INITIALIZATION //
             </div>
-            <div class="nonkeyObject">
-                <img class="object" src="/docs/Bilder/Schlüssel.png">
-                <h1 class="objectdownside">-5s</h1>
-            </div>-->
-        </div>
-        <div class="card" id="Schlüsselwort">
-            <h2>Schlüsselwort eingeben:</h2>
 
-            <textarea placeholder="Hier das Schlüsselwort eingeben..." id="SchlüsselwortArea"></textarea>
-            <button class="send-btn" id="schlüsselwortAbsenden">Schlüsselwort absenden</button>
-        </div>
+            <div class="quiz-start-line"></div>
 
-        <div class="card" id="SchlussGewonnen">
-            <h2 style="text-align: left; color: green;">Gewonnen:</h2>
-            <h3 style="text-align: left;">
-                Du hast das Schlüsselwort richtig zusammengestellt und den Code damit geknackt. Bist du bereit für die
-                nächste Runde?
-            </h3>
-            <button class="send-btn" style="text-align: center;" id="nächsteRunde">Nächste Runde</button>
-        </div>
-        <div class="card" id="SchlussVerloren">
-            <h2 style="text-align: left; color: red;">Verloren:</h2>
-            <h3 style="text-align: left;">
-                Du hast das Codewort leider nicht in der vorgegebenen Zeit herausgefunden. Probiere es doch einfach noch
-                einmal.
-            </h3>
-            <button class="send-btn" style="text-align: center;" id="rundewiederholen">Runde wiederholen</button>
-        </div>
-        <div class="card" id="EndeKomplettGewonnen">
-            <h2 style="text-align: center; color: rgb(51, 255, 0);">😄Alles Gute zum Muttertag.😄</h2>
-            <h3>
-                Ich hoffe dir hat das turbulente Spiel gefallen. Wenn du nochmal alle Wörter zusammensetzt kommen diese
-                Sätze am Ende heraus:
-            </h3>
-            <h3><br>Ich wünsche dir alles gute zum Muttertag. <br>Bleib wie du bist und genau so bist du super.
-                <br>Lasse dich von keinem aus der Ruhe bringen und habe vor allem heute einen super schönen Tag.
-            </h3>
-            <h3><i><br>Hinweis:<br>Du kannst auch gerne noch eine Runde spielen und diesmal andere Wörter herausfinden
-                    um deine Aufgabe für den heutigen Tag herauszufinden. (Codewort: Affe)</i>
-            </h3>
-        </div>
-        <div class="card" id="AlternativerWeg">
-            <h2 style="text-align: center; color: rgb(255, 60, 0);">Das Versteckte Rätsel</h2>
-            <h3>
-                Super 😄, du hast die erste Runde geschafft, aber das war noch lange nicht alles, denn nun geht es
-                weiter.
-            </h3>
-            <h3><br>Diesmal sollst du herausfinden <br>was du heute zu tun hast. <br>Also viel Spaß und auch hier
-                <br>sind alle Regeln wie immer. 😄</h3>
+            <h1>DAS<br>COD-QUIZ</h1>
 
-            <button class="send-btn" style="text-align: center;" id="startzweitesSpiel">Spiel beginnen</button>
-        </div>
-        <div class="card" id="EndeKomplettGewonnenAlternativ">
-            <h2 style="text-align: center; color: rgb(51, 255, 0);">😄Alles Gute zum Muttertag.😄 x2</h2>
-            <h3>
-                Ich hoffe dir hat auch dieses Spiel gefallen. Wenn du nochmal alle Wörter zusammensetzt kommen diese
-                Sätze am Ende heraus:
-            </h3>
-            <h3><br>Deine Aufgaben sind heute. Ähm schlafen, ausruhen, einfach mal den Tag genießen usw. Mach dir heute
-                einfach einen schönen Tag und jetzt bin ich auch raus.😄 <br>
-                <a href="https://designshop-6aa0.kxcdn.com/photos/Meridian-design-muttertag-16314_26.jpg"
-                    target="_blank">Hier ist noch etwas schönes für dich.</a>
-            </h3>
+            <div class="quiz-start-subtitle">
+                CLASSIFIED // OPERATION 18
+            </div>
+
+            <button class="quiz-start-button" onclick="startQuizFromButton()">
+                <span class="quiz-start-icon">▶</span>
+                MISSION STARTEN
+            </button>
+
+            <div class="quiz-start-warning">
+                ⚠ AUDIO SYSTEM READY
+            </div>
 
         </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         START SCREEN
+    ====================================================== -->
+
+    <main id="startScreen">
+
+        <section class="mission-select">
+
+            <div class="section-label">
+                CLASSIFIED // MISSION SELECT
+            </div>
+
+            <h2>CHOOSE YOUR MISSION</h2>
+
+            <div class="mission-line"></div>
+
+
+            <!-- QUIZ 01 -->
+
+            <button class="mode-card" onclick="openQuiz(1)">
+
+                <div class="mode-number">
+                    01
+                </div>
+
+                <div class="mode-content">
+
+                    <div class="mode-label">
+                        TRAINING // CLASSIFIED
+                    </div>
+
+                    <div class="mode-title">
+                        QUIZ 01
+                    </div>
+
+                    <div class="mode-description">
+                        CLASSIC CALL OF DUTY
+                    </div>
+
+                </div>
+
+                <div class="mode-arrow">
+                    →
+                </div>
+
+            </button>
+
+
+            <!-- QUIZ 02 -->
+
+            <button class="mode-card" onclick="openQuiz(2)">
+
+                <div class="mode-number">
+                    02
+                </div>
+
+                <div class="mode-content">
+
+                    <div class="mode-label">
+                        MODERN WARFARE // CLASSIFIED
+                    </div>
+
+                    <div class="mode-title">
+                        QUIZ 02
+                    </div>
+
+                    <div class="mode-description">
+                        MODERN WARFARE
+                    </div>
+
+                </div>
+
+                <div class="mode-arrow">
+                    →
+                </div>
+
+            </button>
+
+
+            <!-- QUIZ 03 -->
+
+            <button class="mode-card" onclick="openQuiz(3)">
+
+                <div class="mode-number">
+                    03
+                </div>
+
+                <div class="mode-content">
+
+                    <div class="mode-label">
+                        BLACK OPS // CLASSIFIED
+                    </div>
+
+                    <div class="mode-title">
+                        QUIZ 03
+                    </div>
+
+                    <div class="mode-description">
+                        BLACK OPS
+                    </div>
+
+                </div>
+
+                <div class="mode-arrow">
+                    →
+                </div>
+
+            </button>
+
+
+            <!-- ARCADE -->
+
+            <button class="mode-card arcade-card" onclick="openArcade()">
+
+                <div class="mode-number">
+                    04
+                </div>
+
+                <div class="mode-content">
+
+                    <div class="mode-label">
+                        ARCADE // LIVE FIRE
+                    </div>
+
+                    <div class="mode-title">
+                        SHOOTING RANGE
+                    </div>
+
+                    <div class="mode-description">
+                        CHOOSE YOUR WEAPON
+                    </div>
+
+                </div>
+
+                <div class="mode-arrow">
+                    →
+                </div>
+
+            </button>
+
+
+            <!-- SAVED DATA -->
+
+            <div class="save-status" id="saveStatus">
+                SYSTEM // SAVE DATA ACTIVE
+            </div>
+
+            <button class="clear-data-button" onclick="clearSavedData()">
+
+                🗑 DELETE ALL SAVED DATA
+
+            </button>
+
+        </section>
+
     </main>
 
 
+    <!-- =====================================================
+         QUIZ
+    ====================================================== -->
+
+    <section id="quizContainer" class="quiz-container">
+
+        <div class="quiz-hud">
+
+            <div class="quiz-topbar">
+
+                <button class="back-button quiz-back" onclick="backToStart()">
+
+                    <span class="back-arrow">←</span>
+                    <span>BACK TO MISSION SELECT</span>
+
+                </button>
+
+
+                <!-- QUIZ TIMER -->
+
+                <div class="quiz-timer" id="quizTimer">
+
+                    <div class="timer-small-label">
+                        TIME
+                    </div>
+
+                    <div id="quizTimerValue">
+                        30
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="quiz-mode-title" id="quizModeTitle">
+                QUIZ 01 // CLASSIC
+            </div>
+
+
+            <div class="question-info">
+
+                <span id="questionNumber">
+                    QUESTION // 01
+                </span>
+
+                <span>
+                    CLASSIFIED
+                </span>
+
+            </div>
+
+
+            <div class="question-box">
+
+                <div class="question-label">
+                    INCOMING TRANSMISSION
+                </div>
+
+                <h2 id="questionText">
+                    Frage wird geladen...
+                </h2>
+
+            </div>
+
+
+            <div class="answers" id="answers">
+
+                <button class="answer" onclick="answerQuestion(0)">
+
+                    <span class="answer-letter">
+                        A
+                    </span>
+
+                    <span class="answer-text" id="answer0">
+                    </span>
+
+                </button>
+
+
+                <button class="answer" onclick="answerQuestion(1)">
+
+                    <span class="answer-letter">
+                        B
+                    </span>
+
+                    <span class="answer-text" id="answer1">
+                    </span>
+
+                </button>
+
+
+                <button class="answer" onclick="answerQuestion(2)">
+
+                    <span class="answer-letter">
+                        C
+                    </span>
+
+                    <span class="answer-text" id="answer2">
+                    </span>
+
+                </button>
+
+
+                <button class="answer" onclick="answerQuestion(3)">
+
+                    <span class="answer-letter">
+                        D
+                    </span>
+
+                    <span class="answer-text" id="answer3">
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         QUIZ FAILED MODAL
+    ====================================================== -->
+
+    <div id="failureModal" class="modal-overlay">
+
+        <div class="result-modal failure-modal">
+
+            <div class="modal-code">
+                ERROR // MISSION FAILED
+            </div>
+
+            <div class="failure-icon">
+                ✕
+            </div>
+
+            <h2>MISSION FAILED</h2>
+
+            <p id="failureReason">
+                FALSCH
+            </p>
+
+            <button class="modal-button" onclick="backToStart()">
+
+                BACK TO MISSION SELECT
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MISSION COMPLETE
+    ====================================================== -->
+
+    <div id="completeOverlay" class="complete-overlay">
+
+        <div class="complete-particles" id="completeParticles"></div>
+
+        <div class="complete-panel">
+
+            <div class="complete-code">
+                CLASSIFIED // OBJECTIVE COMPLETE
+            </div>
+
+            <div class="complete-icon">
+                ✓
+            </div>
+
+            <div class="complete-title">
+                MISSION COMPLETE
+            </div>
+
+            <div class="complete-subtitle" id="completeSubtitle">
+                ALL OBJECTIVES COMPLETED
+            </div>
+
+            <button class="modal-button" onclick="closeComplete()">
+
+                CONTINUE
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         WEAPON SELECTION
+    ====================================================== -->
+
+    <section class="weapons-section" id="weaponSelection">
+
+        <div class="arcade-title">
+
+            <div>
+                CLASSIFIED // SELECT WEAPON
+            </div>
+
+            <h2>
+                CHOOSE YOUR WEAPON
+            </h2>
+
+        </div>
+
+
+        <div class="weapons-wrapper">
+
+
+            <!-- WEAPON 01 -->
+
+            <div class="weapon" data-weapon="1" data-unlock="1" onclick="selectWeapon(this)">
+
+                <div class="weapon-lock">
+                    🔒
+                </div>
+
+                <img src="/docs/Bilder/VOYAK-KT-3.jpg" alt="Voyak KT-3">
+
+                <div class="weapon-label">
+                    Voyak-KT-3
+                </div>
+
+                <div class="weapon-status">
+                    LOCKED
+                </div>
+
+            </div>
+
+
+            <!-- WEAPON 02 -->
+
+            <div class="weapon" data-weapon="2" data-unlock="1" onclick="selectWeapon(this)">
+
+                <div class="weapon-lock">
+                    🔒
+                </div>
+
+                <img src="/docs/Bilder/VS-Recon-Green.jpg" alt="VS Recon">
+
+                <div class="weapon-label">
+                    VS-Recon
+                </div>
+
+                <div class="weapon-status">
+                    LOCKED
+                </div>
+
+            </div>
+
+
+            <!-- WEAPON 03 -->
+
+            <div class="weapon" data-weapon="3" data-unlock="2" onclick="selectWeapon(this)">
+
+                <div class="weapon-lock">
+                    🔒
+                </div>
+
+                <img src="/docs/Bilder/ladra.jpg" alt="Ladra">
+
+                <div class="weapon-label">
+                    Ladra
+                </div>
+
+                <div class="weapon-status">
+                    LOCKED
+                </div>
+
+            </div>
+
+
+            <!-- WEAPON 04 -->
+
+            <div class="weapon" data-weapon="4" data-unlock="2" onclick="selectWeapon(this)">
+
+                <div class="weapon-lock">
+                    🔒
+                </div>
+
+                <img src="/docs/Bilder/hdr.jpg" alt="HDR">
+
+                <div class="weapon-label">
+                    HDR
+                </div>
+
+                <div class="weapon-status">
+                    LOCKED
+                </div>
+
+            </div>
+
+
+            <!-- WEAPON 05 -->
+
+            <div class="weapon" data-weapon="5" data-unlock="3" onclick="selectWeapon(this)">
+
+                <div class="weapon-lock">
+                    🔒
+                </div>
+
+                <img src="/docs/Bilder/fara-83.png" alt="Fara 83">
+
+                <div class="weapon-label">
+                    Fara 83
+                </div>
+
+                <div class="weapon-status">
+                    LOCKED
+                </div>
+
+            </div>
+
+
+            <!-- WEAPON 06 -->
+
+            <div class="weapon" data-weapon="6" data-unlock="3" onclick="selectWeapon(this)">
+
+                <div class="weapon-lock">
+                    🔒
+                </div>
+
+                <img src="/docs/Bilder/ax-50.png" alt="AX-50">
+
+                <div class="weapon-label">
+                    AX-50
+                </div>
+
+                <div class="weapon-status">
+                    LOCKED
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WICHTIG: UNTER DER WAFFENAUSWAHL -->
+
+        <button class="back-button arcade-back" onclick="backToStart()">
+
+            <span class="back-arrow">←</span>
+            <span>BACK TO MISSION SELECT</span>
+
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         SHOOTING RANGE
+    ====================================================== -->
+
+    <section id="shootingGame" class="shooting-game">
+
+        <div class="shooting-header">
+
+            <div>
+
+                <div class="shooting-subtitle">
+                    CLASSIFIED // LIVE FIRE
+                </div>
+
+                <h2>
+                    SHOOTING RANGE
+                </h2>
+
+            </div>
+
+
+            <div class="arcade-stats">
+
+                <div class="arcade-score">
+
+                    <span>
+                        SCORE
+                    </span>
+
+                    <strong id="score">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="arcade-timer" id="arcadeTimer">
+
+                    <span>
+                        TIME
+                    </span>
+
+                    <strong id="arcadeTimerValue">
+                        03:00
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="shooting-field" id="shootingField">
+
+
+            <!-- TARGET 1 -->
+
+            <div class="target target-1" id="target1">
+
+                <div class="target-ring outer">
+                </div>
+
+                <div class="target-ring middle">
+                </div>
+
+                <div class="target-ring inner">
+                </div>
+
+                <div class="target-center">
+                </div>
+
+            </div>
+
+
+            <!-- TARGET 2 -->
+
+            <div class="target target-2" id="target2">
+
+                <div class="target-ring outer">
+                </div>
+
+                <div class="target-ring middle">
+                </div>
+
+                <div class="target-ring inner">
+                </div>
+
+                <div class="target-center">
+                </div>
+
+            </div>
+
+
+            <!-- TARGET 3 -->
+
+            <div class="target target-3" id="target3">
+
+                <div class="target-ring outer">
+                </div>
+
+                <div class="target-ring middle">
+                </div>
+
+                <div class="target-ring inner">
+                </div>
+
+                <div class="target-center">
+                </div>
+
+            </div>
+
+
+            <div id="gameWeapon" class="game-weapon">
+
+                <img id="gameWeaponImage" src="" alt="Selected weapon">
+
+            </div>
+
+
+            <div id="bullet" class="bullet">
+            </div>
+
+
+            <div id="hitMessage" class="hit-message">
+            </div>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div class="shoot-controls">
+
+            <div class="control">
+                <span>↑</span>
+                MOVE UP
+            </div>
+
+            <div class="control">
+                <span>↓</span>
+                MOVE DOWN
+            </div>
+
+            <div class="control">
+                <span>SPACE</span>
+                FIRE
+            </div>
+
+        </div>
+
+
+        <button class="back-button arcade-game-back" onclick="exitShootingGame()">
+
+            <span class="back-arrow">←</span>
+            <span>BACK TO WEAPON SELECT</span>
+
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         LEADERBOARD
+    ====================================================== -->
+
+    <section id="leaderboardSection" class="leaderboard-section">
+
+        <div class="leaderboard-panel">
+
+            <div class="leaderboard-code">
+                CLASSIFIED // MISSION RESULTS
+            </div>
+
+            <h2>
+                SHOOTING RANGE COMPLETE
+            </h2>
+
+            <div class="complete-weapon-name" id="completeWeaponName">
+                WEAPON
+            </div>
+
+            <div class="final-score-label">
+                FINAL SCORE
+            </div>
+
+            <div class="final-score" id="finalScore">
+                0
+            </div>
+
+
+            <div class="name-input-wrapper">
+
+                <label for="playerName">
+                    ENTER YOUR NAME
+                </label>
+
+                <input type="text" id="playerName" maxlength="20" placeholder="OPERATOR NAME">
+
+                <button class="modal-button" onclick="saveLeaderboardScore()">
+
+                    SAVE SCORE
+
+                </button>
+
+            </div>
+
+
+            <div class="leaderboard-title">
+                🏆 LEADERBOARD
+            </div>
+
+            <div id="leaderboardList" class="leaderboard-list">
+            </div>
+
+
+            <button class="back-button leaderboard-back" onclick="backToStart()">
+
+                <span class="back-arrow">←</span>
+                <span>BACK TO MISSION SELECT</span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer>
-        <p>&copy; 2026 Muttertagsgeschenk</p>
+
+        <div>
+            CLASSIFIED // 18TH BIRTHDAY RON
+        </div>
+
+        <div>
+            CALL OF DUTY TRAINING SIMULATION
+        </div>
+
     </footer>
 
-    <!-- JavaScript einbinden -->
+
     <script src="script.js"></script>
+
 </body>
 
 </html>

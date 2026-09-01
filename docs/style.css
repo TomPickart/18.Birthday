@@ -1,233 +1,2660 @@
-/* Reset */
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Seite */
+
+/* =========================================================
+   BODY
+========================================================= */
+
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #f9fafb);
-    color: #333;
-    line-height: 1.6;
+    background: #080808;
+    color: #ddd;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* Header */
+
+/* =========================================================
+   SCANLINES / HUD
+========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+
+    background:
+        repeating-linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.018) 0px,
+            rgba(255, 255, 255, 0.018) 1px,
+            transparent 1px,
+            transparent 4px);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 header {
-    background: #e54646;
-    color: rgb(136, 255, 0);
-    padding: 2rem;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 100%;
+    min-height: 250px;
+
+    background:
+        linear-gradient(rgba(0, 0, 0, .75),
+            rgba(0, 0, 0, .9)),
+        #111;
+
+    border-bottom: 2px solid #333;
+    overflow: hidden;
 }
 
-/* Main Bereich */
-main {
-    margin: 3rem auto;
-    padding: 0 1rem;
-    text-align: center;
-}
-
-/* Standard Button oben */
-#myButton {
-    margin: 1rem 0 2rem;
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    background: #4f46e5;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#myButton:hover {
-    background: #4338ca;
-}
-
-#display {
+header::after {
+    content: "";
     position: absolute;
-    top: 20px;
-    right: 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
 
-    font-size: 2.2rem; /* 👉 hier größer */
-    font-weight: bold;
+    background: #ff3300;
 
-    background: rgba(255,255,255,0.2);
-    padding: 0.4rem 0.9rem;
-    border-radius: 10px;
-
-    margin: 0;
+    box-shadow:
+        0 0 10px #ff3300,
+        0 0 25px rgba(255, 51, 0, .6);
 }
 
-/* Buttons */
-.buttons {
+.header-content {
+    width: 100%;
+    max-width: 1500px;
+    min-height: 250px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 35px;
+    padding: 25px 35px;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   HEADER BILDER
+========================================================= */
+
+.header-image-wrapper {
+    position: relative;
+
+    width: 170px;
+    height: 230px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border: 1px solid #444;
+
+    background: #050505;
+
+    box-shadow:
+        0 0 15px rgba(0, 0, 0, .9),
+        inset 0 0 20px rgba(0, 0, 0, .8);
+}
+
+.header-image-wrapper::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border: 1px solid rgba(255, 51, 0, .35);
+
+    z-index: 3;
+    pointer-events: none;
+}
+
+.header-image-wrapper::after {
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: 0;
+
+    width: 100%;
+    height: 35%;
+
+    background:
+        linear-gradient(to bottom,
+            transparent,
+            rgba(255, 51, 0, .18),
+            transparent);
+
+    animation: headerScan 4s linear infinite;
+
+    z-index: 4;
+    pointer-events: none;
+}
+
+.header-bild {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    filter:
+        grayscale(.25) contrast(1.15) brightness(.8);
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.header-image-wrapper:hover .header-bild {
+    transform: scale(1.04);
+
+    filter:
+        grayscale(0) contrast(1.25) brightness(.95);
+}
+
+.header-left {
+    animation:
+        headerImageLeft 1s ease-out forwards,
+        headerPulse 5s ease-in-out 1.2s infinite;
+}
+
+.header-right {
+    animation:
+        headerImageRight 1s ease-out forwards,
+        headerPulse 5s ease-in-out 1.5s infinite;
+}
+
+@keyframes headerImageLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-70px);
+        filter: brightness(2);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: brightness(1);
+    }
+}
+
+@keyframes headerImageRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(70px);
+        filter: brightness(2);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: brightness(1);
+    }
+}
+
+@keyframes headerScan {
+
+    0% {
+        top: -40%;
+    }
+
+    100% {
+        top: 120%;
+    }
+}
+
+@keyframes headerPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 15px rgba(0, 0, 0, .9),
+            inset 0 0 20px rgba(0, 0, 0, .8);
+    }
+
+    50% {
+        box-shadow:
+            0 0 20px rgba(255, 51, 0, .18),
+            inset 0 0 25px rgba(255, 51, 0, .08);
+    }
+}
+
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.header-title {
+    text-align: center;
+    flex: 1;
+
+    animation: titleAppear 1.3s ease-out;
+}
+
+@keyframes titleAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(.92);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+.subtitle {
+    color: #777;
+
+    font-family: monospace;
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 10px;
+}
+
+.header-title h1 {
+    font-family: Impact, "Arial Black", sans-serif;
+
+    font-size: clamp(45px, 5vw, 78px);
+
+    letter-spacing: 6px;
+
+    color: #eee;
+
+    text-shadow:
+        3px 3px 0 #222,
+        0 0 15px rgba(255, 51, 0, .25);
+
+    position: relative;
+}
+
+.warning {
+    margin-top: 12px;
+
+    font-family: monospace;
+    font-size: 12px;
+
+    color: #ff3300;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   START SCREEN
+========================================================= */
+
+#startScreen {
+    min-height: calc(100vh - 250px);
+
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+
+    padding: 55px 25px 80px;
+}
+
+.mission-select {
+    width: min(100%, 1050px);
+}
+
+.section-label {
+    color: #ff3300;
+
+    font-family: monospace;
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+}
+
+.mission-select h2 {
+    font-family: Impact, "Arial Black", sans-serif;
+
+    font-size: clamp(32px, 5vw, 55px);
+
+    letter-spacing: 3px;
+
+    color: #eee;
+}
+
+.mission-line {
+    height: 2px;
+    width: 100%;
+
+    margin: 18px 0 30px;
+
+    background: #222;
+
+    position: relative;
+}
+
+.mission-line::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 25%;
+    height: 2px;
+
+    background: #ff3300;
+
+    box-shadow: 0 0 12px #ff3300;
+}
+
+
+/* =========================================================
+   MODE CARDS
+========================================================= */
+
+.mode-card {
+    width: 100%;
+    min-height: 115px;
+
+    margin-bottom: 16px;
+
+    padding: 18px 24px;
+
+    display: flex;
+    align-items: center;
+
+    text-align: left;
+
+    color: #ddd;
+
+    background:
+        linear-gradient(135deg,
+            rgba(22, 22, 22, .98),
+            rgba(10, 10, 10, .98));
+
+    border: 1px solid #333;
+    border-left: 5px solid #444;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.mode-card:hover {
+    transform: translateX(7px) scale(1.015);
+
+    border-color: #ff3300;
+    border-left-color: #ff3300;
+
+    background:
+        linear-gradient(135deg,
+            rgba(45, 20, 14, .98),
+            rgba(12, 12, 12, .98));
+
+    box-shadow:
+        0 0 25px rgba(255, 51, 0, .25),
+        0 0 50px rgba(255, 51, 0, .08),
+        inset 0 0 25px rgba(255, 51, 0, .06);
+}
+
+.mode-number {
+    font-family: Impact, sans-serif;
+
+    font-size: 48px;
+
+    color: #333;
+
+    width: 100px;
+
+    transition: color .25s ease;
+}
+
+.mode-card:hover .mode-number {
+    color: #ff3300;
+}
+
+.mode-content {
+    flex: 1;
+}
+
+.mode-label {
+    font-family: monospace;
+
+    color: #666;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 4px;
+}
+
+.mode-title {
+    font-family: Impact, "Arial Black", sans-serif;
+
+    font-size: 28px;
+
+    letter-spacing: 2px;
+
+    color: #eee;
+}
+
+.mode-description {
+    color: #888;
+
+    font-family: monospace;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+.mode-arrow {
+    font-size: 32px;
+
+    color: #444;
+
+    transition:
+        transform .25s ease,
+        color .25s ease;
+}
+
+.mode-card:hover .mode-arrow {
+    color: #ff3300;
+
+    transform: translateX(8px);
+}
+
+.arcade-card {
+    border-left-color: #444;
+}
+
+.arcade-card:hover {
+    border-left-color: #ff3300;
+}
+
+
+/* =========================================================
+   SAVE STATUS
+========================================================= */
+
+.save-status {
+    margin-top: 25px;
+
+    text-align: center;
+
+    font-family: monospace;
+    font-size: 11px;
+
+    color: #555;
+
+    letter-spacing: 2px;
+}
+
+.clear-data-button {
+    display: block;
+
+    margin: 15px auto 0;
+
+    padding: 9px 18px;
+
+    border: 1px solid #333;
+
+    background: #111;
+
+    color: #666;
+
+    font-family: monospace;
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        color .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+}
+
+.clear-data-button:hover {
+    color: #ff3300;
+
+    border-color: #ff3300;
+
+    background: #1b0b08;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 11px 20px;
+
+    background: #111;
+
+    border: 1px solid #444;
+
+    color: #aaa;
+
+    font-family: monospace;
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.back-button:hover {
+    transform: translateX(-5px);
+
+    color: #fff;
+
+    border-color: #ff3300;
+
+    background: #1b0b08;
+
+    box-shadow:
+        0 0 18px rgba(255, 51, 0, .2);
+}
+
+.back-arrow {
+    font-size: 20px;
+
+    transition: transform .25s ease;
+}
+
+.back-button:hover .back-arrow {
+    transform: translateX(-5px);
+}
+
+.quiz-back {
+    margin-bottom: 18px;
+}
+
+.arcade-back {
+    margin: 50px auto 0;
+
+    display: flex;
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz-container {
+    display: none;
+
+    min-height: calc(100vh - 250px);
+
+    padding: 35px 25px 80px;
+}
+
+.quiz-hud {
+    width: min(100%, 1100px);
+
+    margin: auto;
+
+    position: relative;
+}
+
+.quiz-topbar {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+.quiz-mode-title {
+    margin-top: 5px;
+
+    color: #ff3300;
+
+    font-family: monospace;
+
+    letter-spacing: 3px;
+
+    font-size: 14px;
+}
+
+.question-info {
+    margin-top: 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-family: monospace;
+
+    font-size: 12px;
+
+    color: #555;
+
+    border-bottom: 1px solid #222;
+
+    padding-bottom: 10px;
+}
+
+.question-info span:first-child {
+    color: #ff3300;
+}
+
+
+/* =========================================================
+   QUIZ TIMER
+========================================================= */
+
+.quiz-timer {
+    min-width: 95px;
+
+    text-align: center;
+
+    padding: 8px 12px;
+
+    border: 1px solid #444;
+
+    background: #0e0e0e;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.timer-small-label {
+    color: #555;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+#quizTimerValue {
+    color: #ddd;
+
+    font-family: Impact, sans-serif;
+
+    font-size: 30px;
+
+    line-height: 1;
+}
+
+.quiz-timer.danger {
+    border-color: #ff3300;
+
+    box-shadow:
+        0 0 15px rgba(255, 51, 0, .35);
+
+    animation: timerDanger .5s infinite alternate;
+}
+
+.quiz-timer.danger #quizTimerValue {
+    color: #ff3300;
+}
+
+@keyframes timerDanger {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: .35;
+    }
+}
+
+
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.question-box {
+    margin-top: 28px;
+
+    min-height: 210px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border: 1px solid #333;
+
+    background:
+        linear-gradient(135deg,
+            #111,
+            #090909);
+
+    position: relative;
+
+    box-shadow:
+        inset 0 0 40px rgba(0, 0, 0, .8);
+}
+
+.question-box::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: #ff3300;
+
+    box-shadow:
+        0 0 15px rgba(255, 51, 0, .4);
+}
+
+.question-label {
+    color: #666;
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+.question-box h2 {
+    font-size: clamp(22px, 3vw, 34px);
+
+    line-height: 1.35;
+
+    color: #eee;
+}
+
+
+/* =========================================================
+   ANSWERS
+========================================================= */
+
+.answers {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.answer {
+    min-height: 75px;
+
+    padding: 12px 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    text-align: left;
+
+    background: #111;
+
+    border: 1px solid #333;
+
+    color: #ddd;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.answer:hover {
+    transform: translateX(5px);
+
+    border-color: #ff3300;
+
+    background: #1b0b08;
+
+    box-shadow:
+        0 0 18px rgba(255, 51, 0, .18);
+}
+
+.answer-letter {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #444;
+
+    color: #ff3300;
+
+    font-family: Impact, sans-serif;
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+}
+
+.answer-text {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   EXPLOSION / WRONG ANSWER
+========================================================= */
+
+.quiz-container.explosion {
+    animation: screenShake .35s;
+}
+
+@keyframes screenShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-10px);
+    }
+
+    40% {
+        transform: translateX(10px);
+    }
+
+    60% {
+        transform: translateX(-7px);
+    }
+
+    80% {
+        transform: translateX(7px);
+    }
+}
+
+.quiz-container.explosion::after {
+    content: "✕";
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 180px;
+    height: 180px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #fff;
+
+    font-size: 100px;
+
+    background:
+        radial-gradient(circle,
+            rgba(255, 255, 255, .95) 0%,
+            rgba(255, 51, 0, .9) 20%,
+            rgba(255, 51, 0, .25) 45%,
+            transparent 70%);
+
+    animation: explosion .5s forwards;
+
+    z-index: 500;
+}
+
+@keyframes explosion {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%) scale(.2);
+    }
+
+    25% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%) scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%) scale(1.7);
+    }
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, .82);
+
+    backdrop-filter: blur(4px);
+}
+
+.result-modal {
+    width: min(90%, 450px);
+
+    padding: 35px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(145deg,
+            #181818,
+            #090909);
+
+    border: 1px solid #ff3300;
+
+    box-shadow:
+        0 0 50px rgba(255, 51, 0, .25);
+}
+
+.modal-code {
+    color: #666;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+.failure-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: auto;
+
+    border: 2px solid #ff3300;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #ff3300;
+
+    font-size: 35px;
+}
+
+.result-modal h2 {
+    margin-top: 18px;
+
+    font-family: Impact, sans-serif;
+
+    font-size: 40px;
+
+    letter-spacing: 3px;
+}
+
+.result-modal p {
+    margin: 10px 0 25px;
+
+    font-family: monospace;
+
+    color: #ff3300;
+}
+
+.modal-button {
+    padding: 13px 25px;
+
+    border: 1px solid #ff3300;
+
+    background: #170a07;
+
+    color: #eee;
+
+    font-family: monospace;
+
+    cursor: pointer;
+
+    letter-spacing: 1px;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.modal-button:hover {
+    transform: translateY(-3px);
+
+    background: #29100b;
+
+    box-shadow:
+        0 0 20px rgba(255, 51, 0, .3);
+}
+
+
+/* =========================================================
+   MISSION COMPLETE
+========================================================= */
+
+.complete-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle,
+            rgba(255, 51, 0, .16),
+            rgba(0, 0, 0, .96) 65%);
+
+    overflow: hidden;
+}
+
+.complete-overlay.active {
+    display: flex;
+
+    animation: completeFade .5s ease-out;
+}
+
+@keyframes completeFade {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.complete-panel {
+    text-align: center;
+
+    position: relative;
+
+    z-index: 5;
+
+    animation:
+        completePanel .8s cubic-bezier(.17, .67, .32, 1.4);
+}
+
+@keyframes completePanel {
+
+    from {
+        opacity: 0;
+
+        transform: scale(.4);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+.complete-code {
+    font-family: monospace;
+
+    color: #888;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.complete-icon {
+    width: 90px;
+    height: 90px;
+
+    margin: 20px auto;
+
+    border: 2px solid #ff3300;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #ff3300;
+
+    font-size: 55px;
+
+    box-shadow:
+        0 0 25px rgba(255, 51, 0, .5);
+
+    animation:
+        completeIcon 1s infinite alternate;
+}
+
+@keyframes completeIcon {
+
+    from {
+        box-shadow:
+            0 0 15px rgba(255, 51, 0, .25);
+    }
+
+    to {
+        box-shadow:
+            0 0 50px rgba(255, 51, 0, .8);
+    }
+}
+
+.complete-title {
+    font-family: Impact, "Arial Black", sans-serif;
+
+    font-size: clamp(55px, 8vw, 110px);
+
+    color: #eee;
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 0 20px rgba(255, 51, 0, .5);
+}
+
+.complete-subtitle {
+    margin: 8px 0 30px;
+
+    color: #ff3300;
+
+    font-family: monospace;
+
+    letter-spacing: 3px;
+}
+
+.complete-particle {
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    background: #ff3300;
+
+    animation:
+        particleFly 2s ease-out forwards;
+}
+
+@keyframes particleFly {
+
+    from {
+        transform:
+            translate(0, 0) scale(1);
+
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translate(var(--x), var(--y)) scale(0);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   WEAPONS
+========================================================= */
+
+.weapons-section {
+    display: none;
+
+    min-height: calc(100vh - 250px);
+
+    padding: 50px 25px 80px;
+
+    width: 100%;
+}
+
+.arcade-title {
+    width: min(100%, 1200px);
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.arcade-title>div {
+    color: #ff3300;
+
+    font-family: monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+}
+
+.arcade-title h2 {
+    margin-top: 8px;
+
+    font-family: Impact, sans-serif;
+
+    font-size: clamp(40px, 6vw, 65px);
+
+    letter-spacing: 4px;
+
+    color: #eee;
+}
+
+.weapons-wrapper {
+    width: min(100%, 1200px);
+
+    margin: 40px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.weapon {
+    position: relative;
+
+    min-height: 220px;
+
+    border: 1px solid #333;
+
+    background: #0d0d0d;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.weapon:hover:not(.locked) {
+    transform: translateY(-6px);
+
+    border-color: #ff3300;
+
+    box-shadow:
+        0 0 25px rgba(255, 51, 0, .25);
+}
+
+.weapon img {
+    width: 100%;
+    height: 180px;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition:
+        transform .35s ease,
+        filter .35s ease;
+}
+
+.weapon:hover:not(.locked) img {
+    transform: scale(1.05);
+
+    filter:
+        brightness(1.15) contrast(1.1);
+}
+
+.weapon-label {
+    padding: 10px 15px;
+
+    border-top: 1px solid #222;
+
+    color: #eee;
+
+    font-family: monospace;
+
+    letter-spacing: 2px;
+
+    font-size: 14px;
+}
+
+.weapon-status {
+    position: absolute;
+
+    top: 10px;
+    left: 10px;
+
+    padding: 5px 9px;
+
+    background: #090909;
+
+    border: 1px solid #444;
+
+    color: #666;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.weapon-lock {
+    position: absolute;
+
+    right: 12px;
+    top: 10px;
+
+    z-index: 5;
+
+    font-size: 24px;
+
+    filter: grayscale(1);
+}
+
+.weapon.locked {
+    cursor: not-allowed;
+
+    filter: grayscale(.75);
+
+    opacity: .62;
+}
+
+.weapon.locked::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(135deg,
+            rgba(0, 0, 0, .05) 0,
+            rgba(0, 0, 0, .05) 8px,
+            rgba(0, 0, 0, .35) 8px,
+            rgba(0, 0, 0, .35) 10px);
+
+    pointer-events: none;
+}
+
+.weapon.unlocked .weapon-lock {
+    display: none;
+}
+
+.weapon.unlocked .weapon-status {
+    color: #ff3300;
+
+    border-color: #ff3300;
+}
+
+.weapon.unlocked {
+    opacity: 1;
+
+    filter: none;
+}
+
+
+/* =========================================================
+   SHOOTING RANGE
+========================================================= */
+
+.shooting-game {
+    display: none;
+
+    min-height: calc(100vh - 250px);
+
+    padding: 30px 25px 80px;
+}
+
+.shooting-header {
+    width: min(100%, 1200px);
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.shooting-subtitle {
+    color: #ff3300;
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.shooting-header h2 {
+    margin-top: 4px;
+
+    font-family: Impact, sans-serif;
+
+    font-size: 45px;
+
+    letter-spacing: 4px;
+}
+
+.arcade-stats {
+    display: flex;
+
+    gap: 15px;
+}
+
+.arcade-score,
+.arcade-timer {
+    min-width: 105px;
+
+    padding: 9px 15px;
+
+    text-align: center;
+
+    background: #111;
+
+    border: 1px solid #333;
+}
+
+.arcade-score span,
+.arcade-timer span {
+    display: block;
+
+    color: #666;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.arcade-score strong,
+.arcade-timer strong {
+    display: block;
+
+    margin-top: 3px;
+
+    font-family: Impact, sans-serif;
+
+    font-size: 28px;
+
+    color: #eee;
+}
+
+.arcade-timer.warning {
+    border-color: #ff3300;
+
+    animation:
+        timerDanger .5s infinite alternate;
+}
+
+.arcade-timer.warning strong {
+    color: #ff3300;
+}
+
+
+/* =========================================================
+   SHOOTING FIELD
+========================================================= */
+
+.shooting-field {
+    width: min(100%, 1200px);
+
+    height: 520px;
+
+    margin: 25px auto;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #333;
+
+    background:
+        linear-gradient(rgba(255, 255, 255, .02) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            rgba(255, 255, 255, .02) 1px,
+            transparent 1px),
+        #090909;
+
+    background-size: 40px 40px;
+
+    box-shadow:
+        inset 0 0 50px rgba(0, 0, 0, .9);
+}
+
+.shooting-field::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(to bottom,
+            transparent 49.8%,
+            rgba(255, 51, 0, .08) 50%,
+            transparent 50.2%);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   TARGETS
+========================================================= */
+
+.target {
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    border: 2px solid #777;
+
+    background: #111;
+
+    cursor: crosshair;
+
+    transition:
+        top .35s ease;
+}
+
+.target-1 {
+    right: 100px;
+    top: 60px;
+}
+
+.target-2 {
+    right: 300px;
+    top: 230px;
+}
+
+.target-3 {
+    right: 120px;
+    top: 390px;
+}
+
+.target-ring {
+    position: absolute;
+
+    border-radius: 50%;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border: 1px solid #777;
+}
+
+.target-ring.outer {
+    width: 72px;
+    height: 72px;
+}
+
+.target-ring.middle {
+    width: 48px;
+    height: 48px;
+}
+
+.target-ring.inner {
+    width: 25px;
+    height: 25px;
+}
+
+.target-center {
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background: #ff3300;
+
+    box-shadow:
+        0 0 8px #ff3300;
+}
+
+
+/* =========================================================
+   GAME WEAPON
+========================================================= */
+
+.game-weapon {
+    position: absolute;
+
+    left: 35px;
+    top: 215px;
+
+    width: 230px;
+
+    z-index: 10;
+
+    transform: scaleX(-1);
+
+    transition:
+        top .08s linear;
+}
+
+.game-weapon img {
+    width: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 0 8px rgba(0, 0, 0, .9));
+}
+
+
+/* =========================================================
+   BULLET
+========================================================= */
+
+.bullet {
+    position: absolute;
+
+    left: 245px;
+
+    width: 20px;
+    height: 3px;
+
+    background: #ff3300;
+
+    box-shadow:
+        0 0 8px #ff3300;
+
+    display: none;
+
+    z-index: 9;
+}
+
+
+/* =========================================================
+   HIT MESSAGE
+========================================================= */
+
+.hit-message {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    font-family: Impact, sans-serif;
+
+    font-size: 42px;
+
+    letter-spacing: 3px;
+
+    color: #ff3300;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.hit-message.show {
+    animation:
+        hitMessage .7s ease-out;
+}
+
+@keyframes hitMessage {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%) scale(.5);
+    }
+
+    25% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%) scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%) scale(1);
+    }
+}
+
+
+/* =========================================================
+   SHOOT CONTROLS
+========================================================= */
+
+.shoot-controls {
+    width: min(100%, 700px);
+
+    margin: 20px auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
     flex-wrap: wrap;
 }
 
-.buttons button {
-    padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 8px;
-    background: #4f46e5;
-    color: white;
-    cursor: pointer;
-    transition: 0.25s;
-}
+.control {
+    padding: 9px 15px;
 
-.buttons button:hover {
-    background: #4338ca;
-    transform: translateY(-2px);
-}
+    border: 1px solid #333;
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 2rem;
+    background: #111;
+
     color: #666;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
 }
 
-.card {
-    background: white;
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+.control span {
+    color: #ff3300;
+
+    margin-right: 6px;
+}
+
+.arcade-game-back {
+    display: flex;
+
+    margin: 25px auto 0;
+}
+
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+.leaderboard-section {
+    display: none;
+
+    min-height: calc(100vh - 250px);
+
+    padding: 50px 20px 80px;
+}
+
+.leaderboard-panel {
+    width: min(100%, 650px);
+
+    margin: auto;
+
     text-align: center;
+
+    padding: 35px;
+
+    border: 1px solid #333;
+
+    background:
+        linear-gradient(145deg,
+            #151515,
+            #090909);
 }
 
-.card h2 {
-    color: #4f46e5;
-    margin-bottom: 1rem;
+.leaderboard-code {
+    color: #ff3300;
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
 }
 
-/* Eingabefeld */
-.card textarea {
+
+/* =========================================================
+   SHOOTING RANGE COMPLETE
+========================================================= */
+
+.leaderboard-panel h2 {
+    margin: 10px 0 0;
+
+    font-family: Impact, "Arial Black", sans-serif;
+
+    font-size: clamp(34px, 5vw, 48px);
+
+    letter-spacing: 3px;
+
+    line-height: 1.05;
+
+    color: #eee;
+}
+
+
+/* =========================================================
+   NEU: WAFFENNAME UNTER SHOOTING RANGE COMPLETE
+========================================================= */
+
+.complete-weapon-name {
+    margin-top: 12px;
+
+    margin-bottom: 22px;
+
+    color: #ff3300;
+
+    font-family: Impact, "Arial Black", sans-serif;
+
+    font-size: 22px;
+
+    letter-spacing: 4px;
+
+    line-height: 1.2;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 12px rgba(255, 51, 0, .35);
+}
+
+
+/* =========================================================
+   FINAL SCORE
+========================================================= */
+
+.final-score-label {
+    color: #666;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.final-score {
+    margin: 5px 0 25px;
+
+    font-family: Impact, sans-serif;
+
+    font-size: 65px;
+
+    color: #ff3300;
+
+    text-shadow:
+        0 0 20px rgba(255, 51, 0, .35);
+}
+
+
+/* =========================================================
+   NAME INPUT
+========================================================= */
+
+.name-input-wrapper {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.name-input-wrapper label {
+    color: #777;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.name-input-wrapper input {
     width: 100%;
-    height: 100px;
-    padding: 1rem;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-    resize: none;
+
+    padding: 13px;
+
+    background: #080808;
+
+    border: 1px solid #333;
+
+    color: #eee;
+
     outline: none;
+
+    text-align: center;
+
+    font-family: monospace;
+
+    font-size: 14px;
 }
 
-/* Fokus-Effekt */
-.card textarea:focus {
-    border-color: #4f46e5;
-    box-shadow: 0 0 8px rgba(79,70,229,0.2);
+.name-input-wrapper input:focus {
+    border-color: #ff3300;
+
+    box-shadow:
+        0 0 15px rgba(255, 51, 0, .15);
 }
 
-.send-btn {
-    margin-top: 1rem;
-    padding: 0.8rem 1.6rem;
-    border: none;
-    border-radius: 10px;
 
-    background: #4f46e5;
-    color: white;
+/* =========================================================
+   LEADERBOARD TITLE
+========================================================= */
 
-    font-size: 1rem;
-    font-weight: 600;
+.leaderboard-title {
+    margin-top: 30px;
 
-    cursor: pointer;
-    transition: all 0.25s ease;
+    padding-bottom: 10px;
 
-    box-shadow: 0 6px 15px rgba(79,70,229,0.2);
+    border-bottom: 1px solid #333;
+
+    color: #ff3300;
+
+    font-family: monospace;
+
+    letter-spacing: 2px;
 }
 
-/* Hover Effekt */
-.send-btn:hover {
-    background: #4338ca;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(79,70,229,0.3);
+
+/* =========================================================
+   LEADERBOARD LIST
+========================================================= */
+
+.leaderboard-list {
+    margin-top: 10px;
 }
 
-/* Klick Effekt */
-.send-btn:active {
-    transform: scale(0.97);
-}
-
-.cardfull {
+.leader-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 15px;
-    padding: 1.5rem;
-    justify-items: center;
-    max-width: 100vw;
+
+    grid-template-columns: 45px 1fr 100px;
+
+    gap: 10px;
+
+    padding: 10px;
+
+    border-bottom: 1px solid #1f1f1f;
+
+    font-family: monospace;
+
+    text-align: left;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease;
 }
 
-.cardfull img {
-    width: 80px;
-    height: auto;
-    border-radius: 8px;
+.leader-row:hover {
+    background: #111;
+
+    border-bottom-color: #333;
+}
+
+.leader-row .rank {
+    color: #ff3300;
+
+    font-weight: bold;
+}
+
+.leader-row .leader-score {
+    text-align: right;
+
+    color: #eee;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   LEADERBOARD TOP 3
+========================================================= */
+
+.leader-row:nth-child(1) .rank {
+    color: #ff3300;
+}
+
+.leader-row:nth-child(2) .rank {
+    color: #bbb;
+}
+
+.leader-row:nth-child(3) .rank {
+    color: #888;
+}
+
+
+/* =========================================================
+   LEADERBOARD BACK
+========================================================= */
+
+.leaderboard-back {
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-top: 1px solid #222;
+
+    color: #444;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   ECHTER QUIZ STARTBILDSCHIRM
+========================================================= */
+
+#quizStartScreen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at center,
+            rgba(255, 51, 0, .08),
+            rgba(0, 0, 0, .98) 65%),
+        #050505;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SCANLINE-EFFEKT
+========================================================= */
+
+#quizStartScreen::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(to bottom,
+            rgba(255, 255, 255, .018) 0px,
+            rgba(255, 255, 255, .018) 1px,
+            transparent 1px,
+            transparent 4px);
+}
+
+
+/* =========================================================
+   ROTER RAND ENTFERNT
+========================================================= */
+
+#quizStartScreen::after {
+    display: none;
+}
+
+
+/* =========================================================
+   START HUD
+========================================================= */
+
+.quiz-start-hud {
+    position: relative;
+
+    width: min(90%, 800px);
+
+    text-align: center;
+
+    padding: 50px 30px;
+
+    border: 1px solid #333;
+
+    background:
+        linear-gradient(145deg,
+            rgba(20, 20, 20, .95),
+            rgba(5, 5, 5, .98));
+
+    box-shadow:
+        0 0 50px rgba(0, 0, 0, .9),
+        inset 0 0 50px rgba(0, 0, 0, .8);
+
+    animation:
+        startScreenAppear .8s ease-out;
+}
+
+@keyframes startScreenAppear {
+
+    from {
+        opacity: 0;
+
+        transform: scale(.92);
+
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   KLEINER TEXT
+========================================================= */
+
+.quiz-start-small {
+    color: #ff3300;
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   LINIE
+========================================================= */
+
+.quiz-start-line {
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 30px;
+
+    background: #222;
+
+    position: relative;
+}
+
+.quiz-start-line::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 30%;
+    height: 1px;
+
+    background: #ff3300;
+
+    box-shadow:
+        0 0 12px #ff3300;
+}
+
+
+/* =========================================================
+   TITEL
+========================================================= */
+
+.quiz-start-hud h1 {
+    font-family:
+        Impact,
+        "Arial Black",
+        sans-serif;
+
+    font-size:
+        clamp(60px, 10vw, 110px);
+
+    line-height: .9;
+
+    letter-spacing: 6px;
+
+    color: #eee;
+
+    text-shadow:
+        3px 3px 0 #222,
+        0 0 25px rgba(255, 51, 0, .35);
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.quiz-start-subtitle {
+    color: #777;
+
+    font-family: monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 40px;
+}
+
+
+/* =========================================================
+   QUIZ START BUTTON
+========================================================= */
+
+.quiz-start-button {
+    width: min(100%, 500px);
+
+    min-height: 75px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    background:
+        linear-gradient(135deg,
+            #1b0b08,
+            #0d0d0d);
+
+    border: 1px solid #ff3300;
+
+    border-left: 5px solid #ff3300;
+
+    color: #eee;
+
+    font-family:
+        Impact,
+        "Arial Black",
+        sans-serif;
+
+    font-size: 28px;
+
+    letter-spacing: 4px;
+
     cursor: pointer;
-    transition: transform 0.2s ease;
+
+    box-shadow:
+        0 0 20px rgba(255, 51, 0, .15);
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
 }
 
-.cardfull img:hover {
-    transform: scale(1.1);
+.quiz-start-button:hover {
+    transform: scale(1.025);
+
+    background:
+        linear-gradient(135deg,
+            #35130c,
+            #111);
+
+    box-shadow:
+        0 0 30px rgba(255, 51, 0, .4),
+        0 0 60px rgba(255, 51, 0, .1),
+        inset 0 0 25px rgba(255, 51, 0, .08);
 }
 
-.key {
-    cursor: pointer;
-    transition: transform 0.2s ease;
+.quiz-start-icon {
+    color: #ff3300;
+
+    font-size: 25px;
+
+    transition:
+        transform .25s ease;
 }
 
-.key:hover {
-    transform: scale(1.1);
+.quiz-start-button:hover .quiz-start-icon {
+    transform: translateX(6px);
+
+    text-shadow:
+        0 0 12px #ff3300;
 }
 
-.keyletter{
-    display: none;
-    color: green;
+
+/* =========================================================
+   AUDIO STATUS
+========================================================= */
+
+.quiz-start-warning {
+    margin-top: 25px;
+
+    color: #444;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
 }
 
-.objectdownside{
-    display: none;
-    color: red;
+
+/* =========================================================
+   STARTSCREEN AUSBLENDEN
+========================================================= */
+
+#quizStartScreen.hidden {
+    animation:
+        startScreenExit .5s ease forwards;
+
+    pointer-events: none;
 }
 
-#Spielbrett{
-    display: none;
+@keyframes startScreenExit {
+
+    from {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+
+        transform: scale(1.05);
+    }
 }
 
-#Schlüsselwort{
-    display: none;
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .header-image-wrapper {
+        width: 150px;
+        height: 210px;
+    }
+
+    .header-content {
+        gap: 15px;
+    }
 }
 
-#SchlussGewonnen{
-    display: none;
+
+@media (max-width: 700px) {
+
+    .header-content {
+        min-height: auto;
+
+        flex-direction: column;
+
+        padding: 25px 15px;
+    }
+
+    .header-image-wrapper {
+        width: 150px;
+        height: 200px;
+    }
+
+    .header-left {
+        order: 1;
+    }
+
+    .header-title {
+        order: 2;
+    }
+
+    .header-right {
+        order: 3;
+    }
+
+    .header-title h1 {
+        font-size: 42px;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    .question-box {
+        min-height: 240px;
+
+        padding: 25px 20px;
+    }
+
+    .weapons-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .shooting-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .shooting-field {
+        height: 450px;
+    }
+
+    .game-weapon {
+        width: 170px;
+
+        left: 15px;
+    }
+
+    .target-1 {
+        right: 30px;
+    }
+
+    .target-2 {
+        right: 130px;
+    }
+
+    .target-3 {
+        right: 30px;
+    }
+
+    footer {
+        flex-direction: column;
+
+        text-align: center;
+    }
 }
 
-#SchlussVerloren{
-    display: none;
+
+@media (max-width: 600px) {
+
+    .quiz-start-hud {
+        padding: 40px 20px;
+    }
+
+    .quiz-start-hud h1 {
+        font-size: 55px;
+
+        letter-spacing: 4px;
+    }
+
+    .quiz-start-button {
+        min-height: 65px;
+
+        font-size: 22px;
+    }
+
+    .quiz-start-subtitle {
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
 }
 
-#EndeKomplettGewonnen{
-    display: none;
-}
 
-#AlternativerWeg{
-    display: none;
-}
+@media (max-width: 450px) {
 
-#EndeKomplettGewonnenAlternativ{
-    display: none;
-}
+    #startScreen,
+    .quiz-container,
+    .weapons-section,
+    .shooting-game,
+    .leaderboard-section {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 
-@keyframes blinkRed {
-    0% { color: red; }
-    50% { color: white; }
-    100% { color: red; }
-}
+    .mode-card {
+        padding: 14px;
 
-.blink {
-    animation: blinkRed 1s infinite;
+        min-height: 100px;
+    }
+
+    .mode-number {
+        width: 55px;
+
+        font-size: 35px;
+    }
+
+    .mode-title {
+        font-size: 22px;
+    }
+
+    .quiz-topbar {
+        flex-direction: column;
+    }
+
+    .quiz-timer {
+        align-self: flex-end;
+    }
+
+    .leaderboard-panel {
+        padding: 22px 15px;
+    }
+
+    .leaderboard-panel h2 {
+        font-size: 32px;
+    }
+
+    .complete-weapon-name {
+        font-size: 18px;
+
+        letter-spacing: 3px;
+    }
+
+    .leader-row {
+        grid-template-columns: 38px 1fr 80px;
+    }
 }

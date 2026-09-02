@@ -1897,9 +1897,7 @@ function shoot() {
         !gameActive ||
         shooting
     ) {
-
         return;
-
     }
 
 
@@ -1914,10 +1912,9 @@ function shoot() {
         5;
 
 
-    /*
-       Aktuellen Dateinamen der Waffe
-       ermitteln.
-    */
+    /* =========================================
+       WAFFE ERMITTELN
+    ========================================= */
 
     const weaponFile =
         gameWeaponImage.src
@@ -1930,10 +1927,9 @@ function shoot() {
         weaponData[weaponFile];
 
 
-    /*
-       Individuelle Schusshöhe
-       pro Waffe.
-    */
+    /* =========================================
+       SCHUSSHÖHE
+    ========================================= */
 
     const bulletY =
         weaponY +
@@ -1954,10 +1950,11 @@ function shoot() {
         "block";
 
 
-    /*
-       Individuelle Geschossgeschwindigkeit
-       pro Waffe.
-    */
+    /* =========================================
+       BULLET SPEED
+
+       BLEIBT KOMPLETT UNVERÄNDERT
+    ========================================= */
 
     const bulletSpeed =
         weaponSettings
@@ -1969,13 +1966,42 @@ function shoot() {
         startX;
 
 
+    /*
+       Für jedes Ziel speichern wir
+       den kleinsten Abstand zur Mitte.
+
+       Dadurch wird die komplette
+       Flugbahn berücksichtigt.
+    */
+
+    const targetDistances =
+        new Map();
+
+
+    targets.forEach(
+        target => {
+
+            if (target) {
+
+                targetDistances.set(
+                    target,
+                    Infinity
+                );
+
+            }
+
+        }
+    );
+
+
     const interval =
         setInterval(
             () => {
 
-                /*
-                   Spiel wurde beendet.
-                */
+
+                /* =========================================
+                   SPIEL BEENDET
+                ========================================= */
 
                 if (!gameActive) {
 
@@ -1986,16 +2012,27 @@ function shoot() {
                     bullet.style.display =
                         "none";
 
-                    shooting = false;
+                    shooting =
+                        false;
 
                     return;
 
                 }
 
 
-                /*
-                   Kugel bewegen.
-                */
+                /* =========================================
+                   ALTE POSITION
+                ========================================= */
+
+                const previousBulletX =
+                    bulletX;
+
+
+                /* =========================================
+                   KUGEL BEWEGEN
+
+                   SPEED UNVERÄNDERT
+                ========================================= */
 
                 bulletX +=
                     bulletSpeed;
@@ -2005,54 +2042,282 @@ function shoot() {
                     `${bulletX}px`;
 
 
-                /*
-                   Treffer prüfen.
-                */
+                /* =========================================
+                   ALLE ZIELE PRÜFEN
 
-                const hit =
-                    checkHit(
-                        bulletX,
-                        bulletY
-                    );
+                   Wir berechnen den kleinsten
+                   Abstand der Kugelstrecke
+                   zur Zielmitte.
+                ========================================= */
+
+                targets.forEach(
+                    target => {
+
+                        if (!target) {
+                            return;
+                        }
 
 
-                if (hit) {
+                        const rect =
+                            target.getBoundingClientRect();
 
-                    clearInterval(
-                        interval
-                    );
 
-                    bullet.style.display =
-                        "none";
+                        const fieldRect =
+                            shootingField.getBoundingClientRect();
 
-                    shooting = false;
+
+                        const targetX =
+                            rect.left -
+                            fieldRect.left;
+
+
+                        const targetY =
+                            rect.top -
+                            fieldRect.top;
+
+
+                        const centerX =
+                            targetX +
+                            rect.width / 2;
+
+
+                        const centerY =
+                            targetY +
+                            rect.height / 2;
+
+
+                        /*
+                           Vertikaler Abstand
+                           zwischen Kugel und Mitte.
+                        */
+
+                        const verticalDistance =
+                            Math.abs(
+                                bulletY -
+                                centerY
+                            );
+
+
+                        /*
+                           Horizontalen Punkt bestimmen,
+                           der auf der aktuellen Strecke
+                           am nächsten an der Zielmitte liegt.
+                        */
+
+                        let closestX =
+                            centerX;
+
+
+                        if (
+                            closestX <
+                            previousBulletX
+                        ) {
+
+                            closestX =
+                                previousBulletX;
+
+                        }
+
+
+                        if (
+                            closestX >
+                            bulletX
+                        ) {
+
+                            closestX =
+                                bulletX;
+
+                        }
+
+
+                        /*
+                           Exakter Abstand
+                           zur Zielmitte.
+                        */
+
+                        const distance =
+                            Math.sqrt(
+
+                                Math.pow(
+                                    closestX -
+                                    centerX,
+                                    2
+                                ) +
+
+                                Math.pow(
+                                    bulletY -
+                                    centerY,
+                                    2
+                                )
+
+                            );
+
+
+                        /*
+                           Bisher kleinsten Abstand
+                           speichern.
+                        */
+
+                        const oldDistance =
+                            targetDistances.get(
+                                target
+                            );
+
+
+                        if (
+                            distance <
+                            oldDistance
+                        ) {
+
+                            targetDistances.set(
+                                target,
+                                distance
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                /* =========================================
+                   TREFFER PRÜFEN
+
+                   Die Kugel wird NICHT beim
+                   ersten Kontakt gelöscht.
+
+                   Erst wenn sie hinter dem Ziel
+                   ist, wird ausgewertet.
+                ========================================= */
+
+                for (const target of targets) {
+
+                    if (!target) {
+                        continue;
+                    }
+
+
+                    const rect =
+                        target.getBoundingClientRect();
+
+
+                    const fieldRect =
+                        shootingField.getBoundingClientRect();
+
+
+                    const targetX =
+                        rect.left -
+                        fieldRect.left;
+
+
+                    const centerX =
+                        targetX +
+                        rect.width / 2;
+
+
+                    const hitRadius =
+                        Math.max(
+                            rect.width,
+                            rect.height
+                        ) / 2;
 
 
                     /*
-                       NEU:
-                       Wenn Space weiterhin
-                       gedrückt wird, direkt
-                       nächsten Schuss starten.
+                       Nur prüfen, wenn die Kugel
+                       das Ziel bereits passiert hat.
                     */
 
                     if (
-                        spacePressed &&
-                        gameActive
+                        bulletX >
+                        centerX + hitRadius
                     ) {
 
-                        shoot();
+
+                        const closestDistance =
+                            targetDistances.get(
+                                target
+                            );
+
+
+                        /*
+                           Treffer.
+                        */
+
+                        if (
+                            closestDistance <=
+                            hitRadius
+                        ) {
+
+
+                            const points =
+                                calculateHitPoints(
+                                    closestDistance
+                                );
+
+
+                            score +=
+                                points;
+
+
+                            scoreDisplay.textContent =
+                                score;
+
+
+                            playSound(
+                                "hit"
+                            );
+
+
+                            showHit(
+                                points
+                            );
+
+
+                            moveTarget(
+                                target
+                            );
+
+
+                            clearInterval(
+                                interval
+                            );
+
+
+                            bullet.style.display =
+                                "none";
+
+
+                            shooting =
+                                false;
+
+
+                            /*
+                               Bei gedrückter Space-Taste
+                               direkt weiter schießen.
+                            */
+
+                            if (
+                                spacePressed &&
+                                gameActive
+                            ) {
+
+                                shoot();
+
+                            }
+
+
+                            return;
+
+                        }
 
                     }
-
-                    return;
 
                 }
 
 
-                /*
-                   Kugel hat das Spielfeld
-                   verlassen.
-                */
+                /* =========================================
+                   KUGEL HAT DAS FELD VERLASSEN
+                ========================================= */
 
                 if (
                     bulletX >
@@ -2063,16 +2328,17 @@ function shoot() {
                         interval
                     );
 
+
                     bullet.style.display =
                         "none";
 
-                    shooting = false;
+
+                    shooting =
+                        false;
 
 
                     /*
-                       NEU:
-                       Automatisch weiterschießen,
-                       solange Space gehalten wird.
+                       Automatisch weiter schießen.
                     */
 
                     if (
@@ -2094,107 +2360,6 @@ function shoot() {
 
 
 /* =========================================================
-   CHECK HIT
-========================================================= */
-
-function checkHit(
-    bulletX,
-    bulletY
-) {
-
-    for (const target of targets) {
-
-        if (!target) {
-            continue;
-        }
-
-        const rect =
-            target.getBoundingClientRect();
-
-        const fieldRect =
-            shootingField.getBoundingClientRect();
-
-        const targetX =
-            rect.left -
-            fieldRect.left;
-
-        const targetY =
-            rect.top -
-            fieldRect.top;
-
-        const centerX =
-            targetX +
-            rect.width / 2;
-
-        const centerY =
-            targetY +
-            rect.height / 2;
-
-        const distance =
-            Math.sqrt(
-                Math.pow(
-                    bulletX -
-                    centerX,
-                    2
-                ) +
-                Math.pow(
-                    bulletY -
-                    centerY,
-                    2
-                )
-            );
-
-
-        /*
-           Trefferbereich etwas großzügiger machen.
-        */
-
-        const hitRadius =
-            Math.max(
-                rect.width,
-                rect.height
-            ) / 2;
-
-
-        if (
-            distance <=
-            hitRadius
-        ) {
-
-            const points =
-                calculateHitPoints(
-                    distance
-                );
-
-
-            score +=
-                points;
-
-
-            scoreDisplay.textContent =
-                score;
-
-
-            playSound("hit");
-
-            showHit(points);
-
-            moveTarget(target);
-
-
-            return true;
-
-        }
-
-    }
-
-
-    return false;
-
-}
-
-
-/* =========================================================
    HIT POINTS
 ========================================================= */
 
@@ -2203,22 +2368,22 @@ function calculateHitPoints(
 ) {
 
     // ZENTRUM
+    if (distance <= 10) {
+        return 1000;
+    }
+
+    // äußerer Kreis
+    if (distance <= 20) {
+        return 500;
+    }
+
+
+    // äußerer Kreis
     if (distance <= 40) {
         return 250;
     }
 
-    // INNERER BEREICH
-    if (distance <= 65) {
-        return 150;
-    }
-
-    // MITTLERER BEREICH
-    if (distance <= 90) {
-        return 100;
-    }
-
-    // ÄUSSERER BEREICH
-    return 50;
+    return 150;
 
 }
 

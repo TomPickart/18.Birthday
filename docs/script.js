@@ -146,7 +146,7 @@ function clearSavedData() {
 
     const confirmed =
         confirm(
-            "Wirklich ALLE gespeicherten Quiz-Fortschritte, Freischaltungen und Leaderboard-Daten löschen?"
+            "Wirklich ALLE gespeicherten Waffen-Freischaltungen und Leaderboard-Daten löschen?"
         );
 
 
@@ -196,7 +196,7 @@ function clearSavedData() {
     if (saveStatus) {
 
         saveStatus.textContent =
-            "SYSTEM // ALL SAVE DATA DELETED";
+            "SYSTEM // ALLE GESPEICHERTEN DATEN WURDEN GELÖSCHT";
 
     }
 
@@ -291,127 +291,127 @@ const quizzes = {
 
     1: {
 
-        title: "QUIZ 01 // CLASSIC",
+        title: "QUIZ 01 // BLACK OPS 7 / MODERN WARFARE 4",
 
         questions: [
 
             {
-                q: "In welchem Jahr erschien das erste Call of Duty?",
-                a: ["2001", "2003", "2005", "2007"],
+                q: "Wann kommt dieses Jahr die volle Version von Modern Warfare 4 raus?",
+                a: ["21. Oktober", "22. Oktober", "23. Oktober", "24. Oktober"],
+                correct: 2
+            },
+
+            {
+                q: "Wann ging das erste Beta Wochendende für Wodern Warfare 4 los?",
+                a: ["18. August", "19. August", "20. August", "21. August"],
+                correct: 3
+            },
+
+            {
+                q: "Wer ist der neue Protagonist in Modern Warfare 4?",
+                a: ["Moon", "Park", "Jae", "Cho"],
                 correct: 1
             },
 
             {
-                q: "Welcher Schauplatz spielt in Call of Duty 2 eine große Rolle?",
-                a: ["Zweiter Weltkrieg", "Vietnamkrieg", "Golfkrieg", "Erster Weltkrieg"],
-                correct: 0
-            },
-
-            {
-                q: "Call of Duty: World at War spielt hauptsächlich im ...?",
-                a: ["Kalten Krieg", "Zweiten Weltkrieg", "Golfkrieg", "Vietnamkrieg"],
+                q: "Welche Person kommt in Modern Warfare 4 wieder vor?",
+                a: ["John 'Soap' MacTavish", "Captain Price", "Derek 'Frost' Westbrook", "Andrei Harkov"],
                 correct: 1
             },
 
             {
-                q: "Welche Fraktion kämpft in World at War gegen Deutschland?",
-                a: ["US Marines", "NATO", "SAS", "Task Force 141"],
-                correct: 0
+                q: "In welchem Land ist eine Location von Modern Warfare 4",
+                a: ["Kanada", "Deutschland", "Japan", "Südkorea"],
+                correct: 3
             },
 
             {
-                q: "Wie heißt der Hauptcharakter der US-Kampagne in World at War?",
-                a: ["Miller", "Price", "Soap", "Mason"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Einheit ist besonders mit Captain Price verbunden?",
-                a: ["SAS", "CIA", "SEAL Team 6", "Spetsnaz"],
-                correct: 0
-            },
-
-            {
-                q: "Welcher Teil führte erstmals den Zombies-Modus ein?",
-                a: ["Modern Warfare", "World at War", "Black Ops II", "Ghosts"],
+                q: "Wann kam Black Ops 7 raus?",
+                a: ["14. Oktober 2025", "14. November 2025", "14. Dezember 2025", "14. Januar 2026"],
                 correct: 1
             },
 
             {
-                q: "Wie heißt die bekannte Schrotflinte aus vielen klassischen CoD-Teilen?",
-                a: ["SPAS-12", "AK-74u", "MP5", "M16"],
+                q: "In welchem Jahr spielt die Kampagne von Black Ops 7?",
+                a: ["2025", "2030", "2035", "2040"],
+                correct: 2
+            },
+
+            {
+                q: "Welcher neue Spielmodus ist in Black Ops 7 rausgekommen?",
+                a: ["Endgame", "Zombies", "Koop", "Multiplayer"],
                 correct: 0
             },
 
             {
-                q: "Welche Waffe ist für ihre Trommelmagazin-Optik bekannt?",
-                a: ["Thompson", "M16", "FAMAS", "SCAR-H"],
+                q: "Welche Person ist aus Zombies bekannt?",
+                a: [" Chloe 'Karma' Lynch", " Mike Harper", "'Tank' Dempsey", "David 'Section' Mason"],
+                correct: 2
+            },
+
+            {
+                q: "Für was steht T.E.D.D.?",
+                a: ["Technical Elaborate Driving Driver", "Technical Elaborate Driver Droide", "Technical Elaborate Driving Droid", "Technical Elaborate Driver"],
+                correct: 2
+            },
+
+            {
+                q: "Welche Warzone-Map wurde wieder zurückgebracht?",
+                a: ["Ashika Island", "Verdansk", "Avalon", "Caldera"],
+                correct: 1
+            },
+
+            {
+                q: "Welche Person ist ein Operator in Black Ops 7?",
+                a: ["The Replacer", "Oskar Strauss", "Dean Roth", "Yuri Zavoyski"],
                 correct: 0
             },
 
             {
-                q: "Was bedeutet die Abkürzung 'SAS'?",
-                a: ["Special Air Service", "Special Army Squad", "Strategic Assault Service", "Special Action Soldiers"],
+                q: "Welche Waffe ist eine Waffe aus Black Ops 7?",
+                a: ["MP40", "M4A1", "Model 1887", "AN-94"],
+                correct: 3
+            },
+
+            {
+                q: "Welche Waffe ist eine Maschinenpistole in Black Ops 7?",
+                a: ["REV-46", "Jäger 45", "Akita", "AK-27"],
                 correct: 0
             },
 
             {
-                q: "Welches Fahrzeug sieht man häufig in klassischen Weltkriegs-CoD-Kampagnen?",
-                a: ["Panzer", "Hovercraft", "Drohne", "Jetpack"],
-                correct: 0
+                q: "In welcher Zombie-Map aus Black Ops 7 kam Ol' Tessie vor?",
+                a: ["Astra Malorum", "Totenreich", "Rex Infernus", "Ashes of the Damned"],
+                correct: 3
             },
 
             {
-                q: "Welcher CoD-Teil spielt in der Zeit des Zweiten Weltkriegs und enthält Zombies?",
-                a: ["World at War", "Ghosts", "Advanced Warfare", "Infinite Warfare"],
-                correct: 0
+                q: "Welches Sturmgewehr gibt es in Modern Warfare 4?",
+                a: ["STG44", "Han 86", "XM4", "FFAR 1"],
+                correct: 1
             },
 
             {
-                q: "Welche Waffe ist eine klassische amerikanische WWII-Waffe?",
-                a: ["M1 Garand", "MP7", "Kilo 141", "RAM-7"],
-                correct: 0
+                q: "Welche Waffe gibt es in Modern Warfare und Modern Warfare 4?",
+                a: ["Krait P68", "HK421", "FiNN LMG", "KG-7 Vulcan"],
+                correct: 2
             },
 
             {
-                q: "Welcher Begriff bezeichnet das Nachladen einer Waffe?",
-                a: ["Reload", "Respawn", "Revive", "Deploy"],
-                correct: 0
+                q: "Wie viele Zombie-Maps gibt es in Black Ops 7 insgesamt?",
+                a: ["5", "6", "7", "8"],
+                correct: 1
             },
 
             {
-                q: "Wie nennt man einen Wiedereinstieg nach dem Tod im Multiplayer?",
-                a: ["Respawn", "Reload", "Recoil", "Retreat"],
-                correct: 0
+                q: "Wie viele Multplayer-Maps kamen in Season 5 Black Ops 7 neu raus?",
+                a: ["2", "3", "4", "5"],
+                correct: 2
             },
 
             {
-                q: "Welche Rolle übernimmt ein Scharfschütze?",
-                a: ["Long-Range Support", "Medic", "Pilot", "Engineer"],
-                correct: 0
-            },
-
-            {
-                q: "Was bezeichnet 'XP' im Call-of-Duty-Universum?",
-                a: ["Erfahrungspunkte", "Explosivmunition", "Extra Power", "Extreme Precision"],
-                correct: 0
-            },
-
-            {
-                q: "Was passiert bei einem Headshot?",
-                a: ["Treffer am Kopf", "Treffer am Fuß", "Nachladen", "Respawn"],
-                correct: 0
-            },
-
-            {
-                q: "Was ist ein Killstreak?",
-                a: ["Mehrere Kills hintereinander", "Ein Waffenwechsel", "Eine Niederlage", "Eine Map"],
-                correct: 0
-            },
-
-            {
-                q: "Was braucht man für einen erfolgreichen Multiplayer-Sieg?",
-                a: ["Das Spielziel erreichen", "Nur Kills machen", "Nie sterben", "Nur Snipen"],
+                q: "Welche Multplayer-Map gibt es in Modern Warfare 4?",
+                a: ["Cachette", "Terminal", "Rust", "Shipment"],
                 correct: 0
             }
 
@@ -422,128 +422,128 @@ const quizzes = {
 
     2: {
 
-        title: "QUIZ 02 // MODERN WARFARE",
+        title: "QUIZ 02 // BLACK OPS 6 / MODERN WARFARE 3",
 
         questions: [
 
             {
-                q: "In welchem Jahr erschien das ursprüngliche Modern Warfare?",
-                a: ["2005", "2006", "2007", "2009"],
+                q: "An welchem Datum kam Black Ops 6 raus?",
+                a: ["25. August 2024", "25. September 2024", "25. Oktober 2024", "25. November 2024"],
                 correct: 2
             },
 
             {
-                q: "Wie heißt Captain Prices Einheit im ursprünglichen Modern Warfare?",
-                a: ["SAS", "CIA", "FBI", "Navy SEALs"],
+                q: "Zu welcher Zeit spielt Black Ops 6?",
+                a: ["Frühe 1980er", "1987", "1988", "Frühe 1990er"],
+                correct: 3
+            },
+
+            {
+                q: "Welche Person gibt es in Black Ops 6?",
+                a: ["Russell Adler", "Viktor Reznov", "Raul Menendez", "Kyle 'Gaz' Garrick"],
                 correct: 0
             },
 
             {
-                q: "Wie heißt der Spielercharakter in Modern Warfare 2, der oft mit dem Rufnamen 'Roach' bezeichnet wird?",
-                a: ["Gary Sanderson", "John MacTavish", "Simon Riley", "Kyle Garrick"],
+                q: "Welche Person ist von der CIA in Black Ops 6?",
+                a: ["Miriam McKenna", "Troy Marshall", "Gladney", "Pritchard"],
+                correct: 1
+            },
+
+            {
+                q: "Wie lautet der Rufname von Sevati Dumas aus Black Ops 6?",
+                a: ["Duma", "Dum", "Sevat", "Sev"],
+                correct: 3
+            },
+
+            {
+                q: "An welchem Datum kam Modern Warfare 3 raus?",
+                a: ["10. September 2023", "10. Oktober 2023", "10. November 2023", "10. Dezember 2023"],
+                correct: 2
+            },
+
+            {
+                q: "Welches Land hatte eine Location in der Kampagne von Modern Warfare 3?",
+                a: ["Ukraine", "Russland", "Indien", "China"],
+                correct: 1
+            },
+
+            {
+                q: "Welche Person ist in der Urzikstan Liberation Force in Modern Warfare 3?",
+                a: ["Farah Karim", "John Price", "Kate Laswell", "Phillip Graves"],
                 correct: 0
             },
 
             {
-                q: "Wie heißt der berühmte Bösewicht aus Modern Warfare 2?",
-                a: ["Vladimir Makarov", "Raul Menendez", "Zakhaev", "Khaled Al-Asad"],
+                q: "Wie viele Seasons gab es in Modern Warfare 3?",
+                a: ["3", "4", "5", "6"],
+                correct: 3
+            },
+
+            {
+                q: "Was bekommt man bei einer Killserie von 15 in Modern Warfare 3 Multiplayer?",
+                a: ["Fortgeschrittene Drohne", "Juggernaut", "VTOL Jet", "AC-130/Gunship"],
+                correct: 1
+            },
+
+            {
+                q: "Wie viele neue Multiplayer-Maps sind in der Season 6 von Modern Warfare 3 rausgekommen?",
+                a: ["6", "7", "8", "9"],
+                correct: 1
+            },
+
+            {
+                q: "Welchen Geburtstag feierte Call Of Duty in Modern Warfare 3?",
+                a: ["20. Geburtstag", "18. Geburtstag", "13. Geburtstag", "10. Geburtstag"],
                 correct: 0
             },
 
             {
-                q: "Wie lautet der Rufname von Simon Riley?",
-                a: ["Ghost", "Soap", "Roach", "Gaz"],
+                q: "Welche Waffe ist ein Sturmgewehr in Modern Warfare 3?",
+                a: ["Striker", "Lockwood 680", "BAL-27", "Bruen Mk9"],
+                correct: 2
+            },
+
+            {
+                q: "Welches dieser Waffen ist kein leichtes Maschinengewehr in Modern Warfare 3?",
+                a: ["Pulemyot 762", "KATT-AMR", "DG-58 LSW", "Holger 26"],
+                correct: 1
+            },
+
+            {
+                q: "Welche dieser Waffen ist keine Maschinenpistole in Black Ops 6?",
+                a: ["Ladra", "Dresden 9mm", "XMG", "LC10"],
+                correct: 2
+            },
+
+            {
+                q: "Wie viele Zombie-Maps gab es in Black Ops 6 insgesamt?",
+                a: ["4", "5", "6", "7"],
+                correct: 2
+            },
+
+            {
+                q: "Wie heißt die finale Zombie-Map in Black Ops 6?",
+                a: ["Reckoning", "Shattered Veil", "Citadelle des Morts", "The Tomb"],
                 correct: 0
             },
 
             {
-                q: "Wie heißt John MacTavishs Rufname?",
-                a: ["Soap", "Ghost", "Price", "Roach"],
-                correct: 0
+                q: "Welche Person gehört nicht zu den Hauptpersonen aus Zombies Black Ops 6?",
+                a: ["Mackenzie Carver", "Grigori Weaver", "Elizabeth Grey", "'Tank' Dempsey"],
+                correct: 3
             },
 
             {
-                q: "Was ist die Task Force 141?",
-                a: ["Spezialeinheit", "Panzerdivision", "Luftwaffe", "Geheimdienst-Server"],
-                correct: 0
+                q: "Was heißt S.A.M. aus Black Ops 6 Zombies ausgeschrieben?",
+                a: ["Synaptic Algorithm Medium", "Synaptic Algorithm Module", "Synaptic Alkaline Module", "Synthetic Algorithm Module"],
+                correct: 1
             },
 
             {
-                q: "Welche Figur ist besonders für ihre Totenkopfmaske bekannt?",
-                a: ["Ghost", "Price", "Soap", "Gaz"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Organisation spielt in Modern Warfare eine wichtige Rolle?",
-                a: ["CIA", "NASA", "FIFA", "Interpol"],
-                correct: 0
-            },
-
-            {
-                q: "Wie heißt der Gegenspieler in Modern Warfare 2019?",
-                a: ["General Barkov", "Menendez", "Mason", "Dragovich"],
-                correct: 0
-            },
-
-            {
-                q: "Wie heißt der Hauptcharakter der Kampagne von Modern Warfare 2019?",
-                a: ["Alex", "Roach", "Miller", "Hudson"],
-                correct: 0
-            },
-
-            {
-                q: "Welche britische Figur wird in Modern Warfare 2019 vorgestellt?",
-                a: ["Kyle Garrick", "Frank Woods", "Jason Hudson", "Mason"],
-                correct: 0
-            },
-
-            {
-                q: "Wie heißt die neue Modern-Warfare-Reihe, die 2019 begann?",
-                a: ["Reboot", "Classic Edition", "Origins", "Legacy"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Waffe ist stark mit der Modern-Warfare-Reihe verbunden?",
-                a: ["M4", "M1 Garand", "Ray Gun", "StG 44"],
-                correct: 0
-            },
-
-            {
-                q: "Was ist ein UAV?",
-                a: ["Unbemanntes Aufklärungsflugzeug", "Panzer", "Raketenwerfer", "Scharfschützengewehr"],
-                correct: 0
-            },
-
-            {
-                q: "Was zeigt ein UAV im Multiplayer hauptsächlich?",
-                a: ["Gegnerpositionen", "Munition", "Gesundheit", "Waffenwerte"],
-                correct: 0
-            },
-
-            {
-                q: "Wie heißt Captain Price mit Vornamen?",
-                a: ["John", "Simon", "Kyle", "Alex"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Einheit gehört zur britischen Spezialeinheit im Modern-Warfare-Universum?",
-                a: ["SAS", "KSK", "GIGN", "SWAT"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Figur trägt den Spitznamen 'Soap'?",
-                a: ["John MacTavish", "Simon Riley", "Kyle Garrick", "Alex Keller"],
-                correct: 0
-            },
-
-            {
-                q: "Was ist eine 'Killcam'?",
-                a: ["Wiederholung des Kills", "Map-Übersicht", "Waffenmenü", "Ladebildschirm"],
-                correct: 0
+                q: "In welchen zwei Zombie-Maps kommt die KI S.A.M. das erste mal vor in Black Ops 6 Zombies?",
+                a: ["The Tomb und Shattered Veil", "Terminus und Citadelle des Morts", "Liberty Falls und Citadelle des Morts", "Terminus und Liberty Falls"],
+                correct: 3
             }
 
         ]
@@ -553,128 +553,128 @@ const quizzes = {
 
     3: {
 
-        title: "QUIZ 03 // BLACK OPS",
+        title: "QUIZ 03 // BLACK OPS COLD WAR / MODERN WARFARE 2019",
 
         questions: [
 
             {
-                q: "Wie heißt der Hauptcharakter von Call of Duty: Black Ops?",
-                a: ["Alex Mason", "Soap", "Price", "Ghost"],
+                q: "An welchem Datum kam Black Ops Cold War raus?",
+                a: ["13. November 2020", "13. Dezember 2020", "13. Januar 2021", "13. Februar 2021"],
                 correct: 0
             },
 
             {
-                q: "Welche Organisation wird im Black-Ops-Universum häufig erwähnt?",
-                a: ["CIA", "NASA", "FIFA", "Interpol"],
+                q: "Zu welcher Zeit spielt Black Ops Cold War?",
+                a: ["Frühe 1960er", "Frühe 1970er", "Frühe 1980er", "Frühe 1990er"],
+                correct: 2
+            },
+
+            {
+                q: "Welche Person ist vom United States Government in Black Ops Cold War?",
+                a: ["Helen Park", "Ronald Reagan", "Jason Hudson", "Russell Adler"],
+                correct: 1
+            },
+
+            {
+                q: "Wie viele Hauptmissionen gibt es in der Kampagne in Black Ops Cold War?",
+                a: ["14", "15", "16", "17"],
+                correct: 2
+            },
+
+            {
+                q: "Wen soll Adler vom US-Präsident aus am Anfang der Kampagne in Black Ops Cold War finden?",
+                a: ["Perseus", "Anton Volkov", "Vikhor 'Stitch' Kuzmin", "Imran Zakhaev"],
                 correct: 0
             },
 
             {
-                q: "Wie heißt Masons Freund und Kamerad?",
-                a: ["Frank Woods", "Simon Riley", "Kyle Garrick", "John Price"],
+                q: "An welchem Datum kam Modern Warfare 2019 raus?",
+                a: ["25. September 2023", "25. Oktober 2019", "25. November 2019", "25. Dezember 2019"],
+                correct: 1
+            },
+
+            {
+                q: "Welches Land hatte eine Location in der Kampagne von Modern Warfare 2019?",
+                a: ["Finnland", "Polen", "Vereinigtes Königreich", "Südkorea"],
+                correct: 2
+            },
+
+            {
+                q: "Welche Person ist in der SAS in Modern Warfare 2019?",
+                a: ["John Price", "Kate Laswell", "Kamarov", "Herschel Shepherd"],
                 correct: 0
             },
 
             {
-                q: "In welcher Epoche spielt das erste Black Ops hauptsächlich?",
-                a: ["Kalter Krieg", "Erster Weltkrieg", "Mittelalter", "Zukunft 2050"],
+                q: "Wie viele Seasons gab es in Modern Warfare 2019?",
+                a: ["6", "7", "8", "9"],
                 correct: 0
             },
 
             {
-                q: "Welche Stadt ist eng mit einer bekannten Black-Ops-Mission verbunden?",
-                a: ["Hanoi", "Berlin", "Paris", "Madrid"],
+                q: "Ab welcher Killserie bekommt man in Modern Warfare 2019 Multiplayer eine Drohne?",
+                a: ["2er", "3er", "4er", "5er"],
+                correct: 2
+            },
+
+            {
+                q: "In welcher Season kam die Multiplayer-Map 'Shipment' in Modern Warfare 2019 raus?",
+                a: ["1", "2", "4", "6"],
                 correct: 0
             },
 
             {
-                q: "Wie heißt der Gegenspieler aus Black Ops II?",
-                a: ["Raul Menendez", "Makarov", "Barkov", "Zakhaev"],
+                q: "Welche Multiplayer-Map kam in Modern Warfare 2019 als 24/7 Variante raus?",
+                a: ["Atlas Superstore", "Vacant", "Scrapyard", "Shoot House"],
+                correct: 3
+            },
+
+            {
+                q: "Welche Waffe ist ein Scharfschützengewehr in Modern Warfare 2019?",
+                a: ["M4A1", "Dragunov", "Holger-26", "Model 680"],
+                correct: 1
+            },
+
+            {
+                q: "Welches dieser Waffen ist kein Sturmgewehr in Modern Warfare 2019?",
+                a: ["Kilo 141", "AS VAL", "CR-56 AMAX", "Uzi"],
+                correct: 3
+            },
+
+            {
+                q: "Welche dieser Waffen ist eine Maschinenpistole in Black Ops Cold War?",
+                a: ["XM4", "M16", "1911", "MAC-10"],
+                correct: 3
+            },
+
+            {
+                q: "Wie viele Zombie-Maps gab es in Black Ops Cold War insgesamt?",
+                a: ["4", "5", "6", "7"],
                 correct: 0
             },
 
             {
-                q: "Welche Figur ist besonders mit dem Namen 'Woods' verbunden?",
-                a: ["Frank Woods", "Jason Hudson", "Alex Mason", "David Mason"],
+                q: "Wie hieß der neue Modus der in Zombies in Black Ops Cold War noch rauskam in Season 2?",
+                a: ["Einbruch", "Ausbruch", "Offene Welt", "Nachtausbruch"],
+                correct: 1
+            },
+
+            {
+                q: "Welche Person gehört zu den Hauptpersonen aus Zombies Black Ops Cold War?",
+                a: ["Gabriel Krafft", "Pavel Lazarev", "Kazimir Zykov", "Sergei Ravenov"],
+                correct: 3
+            },
+
+            {
+                q: "In welchem Call Of Duty Teil kam die Ray Gun das erste mal vor?",
+                a: ["Call of Duty: World at War", "Call of Duty: Black Ops", "Call of Duty: Black Ops 2", "Call of Duty 4: Modern Warfare"],
                 correct: 0
             },
 
             {
-                q: "Was ist ein bekanntes Easter Egg in Black Ops?",
-                a: ["Zombies", "Autorennen", "Fußball", "Flugsimulator"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Waffe ist eine ikonische Black-Ops-Waffe?",
-                a: ["Galil", "M4", "SCAR-H", "Kilo 141"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Waffe ist besonders mit dem Zombies-Modus verbunden?",
-                a: ["Ray Gun", "M16", "AK-47", "MP5"],
-                correct: 0
-            },
-
-            {
-                q: "Wie heißt der Zombie-Modus aus Black Ops?",
-                a: ["Zombies", "Undead Warfare", "Dead Ops Only", "Nightfall"],
-                correct: 0
-            },
-
-            {
-                q: "Was ist 'Pack-a-Punch'?",
-                a: ["Waffenverbesserung", "Perk", "Map", "Charakter"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Figur ist eng mit dem Zombies-Universum verbunden?",
-                a: ["Richtofen", "Price", "Ghost", "Roach"],
-                correct: 0
-            },
-
-            {
-                q: "Wie heißt der Protagonist von Black Ops II?",
-                a: ["David Mason", "Alex Mason", "Frank Woods", "Jason Hudson"],
-                correct: 0
-            },
-
-            {
-                q: "Wer ist Raul Menendez?",
-                a: ["Antagonist", "Medic", "Pilot", "Händler"],
-                correct: 0
-            },
-
-            {
-                q: "Black Ops III spielt im Vergleich zu Black Ops deutlich stärker in ...?",
-                a: ["der Zukunft", "der Antike", "dem Mittelalter", "den 1930ern"],
-                correct: 0
-            },
-
-            {
-                q: "Wie heißt die Black-Ops-Reihe aus dem Jahr 2020?",
-                a: ["Cold War", "Future Warfare", "Modern Cold", "Blackout"],
-                correct: 0
-            },
-
-            {
-                q: "Welche Figur kehrt in Black Ops Cold War zurück?",
-                a: ["Alex Mason", "Soap", "Ghost", "Roach"],
-                correct: 0
-            },
-
-            {
-                q: "Was bezeichnet 'Black Ops' im militärischen Kontext?",
-                a: ["Geheime Operationen", "Panzerangriff", "Luftshow", "Ausbildungslager"],
-                correct: 0
-            },
-
-            {
-                q: "Welcher Modus ist ein Markenzeichen der Black-Ops-Reihe?",
-                a: ["Zombies", "Kartrennen", "Golf", "Survival Crafting"],
-                correct: 0
+                q: "In welcher Season wurde die Nagelpistole in Black Ops Cold War hinzugefügt?",
+                a: ["2", "3", "4", "5"],
+                correct: 2
             }
 
         ]
@@ -1031,7 +1031,7 @@ function renderQuestion() {
 
 
     questionNumber.textContent =
-        `QUESTION // ${String(
+        `FRAGE // ${String(
             currentQuestion + 1
         ).padStart(2, "0")} / 20`;
 
@@ -1314,7 +1314,7 @@ function missionComplete() {
 
 
     completeSubtitle.textContent =
-        `${quizzes[currentQuiz].title} // ALL 20 OBJECTIVES COMPLETE`;
+        `${quizzes[currentQuiz].title} // ALLE 20 FRAGEN ABGESCHLOSSEN`;
 
 
     createCompleteParticles();

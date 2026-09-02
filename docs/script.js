@@ -589,8 +589,8 @@ const quizzes = {
 
             {
                 q: "An welchem Datum kam Modern Warfare 2019 raus?",
-                a: ["25. September 2019", "25. Oktober 2019", "25. November 2019", "25. Dezember 2019"],
-                correct: 1
+                a: ["25. August 2019", "25. September 2019", "25. Oktober 2019", "25. November 2019"],
+                correct: 2
             },
 
             {
